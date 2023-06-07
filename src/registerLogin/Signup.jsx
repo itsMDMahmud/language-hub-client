@@ -1,19 +1,49 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import SocialLogin from "./SocialLogin";
+import { AuthContext } from "../Provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const Signup = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-
+  const { register, handleSubmit, reset, formState: { errors }} = useForm();
   const [password, setPassword] = useState("");
+  const { createUser, updateUserProfile } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const onSubmit = (data) => {
     console.log(data);
+    createUser(data?.email, data?.password)
+    .then(result => {
+      const loggedUser =result.user;
+      console.log(loggedUser);
+      updateUserProfile(data.displayName, data.photoURL, data.phoneNumber )
+      .then(()=> {
+        const saveUser = {nameame: data?.displayName, phoneNumber: data?.phoneNumber, photoURL: data?.photoURL }
+        fetch('http://localhost:5000/users', {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json'
+          },
+          body: JSON.stringify(saveUser) 
+        })
+        .then(res => res.json())
+        .then(data => {
+          if (data.insertedId) {
+            reset();
+            Swal.fire({
+              icon: 'success',
+              title: 'User Created Successfully',
+              showConfirmButton: false,
+              timer: 1500
+            })
+            navigate('/')
+          }
+        })
+        // console.log("profile updates");
+       
+      })
+    })
     // Perform registration logic here
   };
 
@@ -36,7 +66,7 @@ const Signup = () => {
                 <input
                   className="input input-bordered w-full"
                   placeholder="Name"
-                  {...register("name", { required: true })}
+                  {...register("displayName", { required: true })}
                 />
                 {errors.name && <span>This field is required</span>}
               </label>
@@ -112,7 +142,7 @@ const Signup = () => {
                 <input
                   className="input input-bordered w-full"
                   placeholder="Photo URL"
-                  {...register("photoUrl")}
+                  {...register("photoURL")}
                 />
               </label>
             </div>
@@ -188,3 +218,8 @@ const Signup = () => {
 };
 
 export default Signup;
+
+
+//displayName
+//phoneNumber
+//photoURL

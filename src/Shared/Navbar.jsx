@@ -1,29 +1,56 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-// import { AuthContext } from "../AuthProvider/AuthProvider";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const Navbar = () => {
-//   const {user, logOut} = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
 
   const handleLogOut = () => {
     logOut()
-    .then( () => {
-      
-    } )
-    .catch( error => console.log(error))
-  }
+      .then(() => {})
+      .catch((error) => console.log(error));
+  };
 
-    const navItems = <>     
-    <li><Link className="text-xl font-semibold NavLink active:text-[#039477]" to='/' >Home</Link></li>
-    <li><Link className="text-xl font-semibold NavLink active:text-[#039477]" to='/about' >Instructors</Link></li>
-    <li><Link className="text-xl font-semibold NavLink active:text-[#039477]" to='/addservice' >Classes</Link></li> 
-    <li><Link className="text-xl font-semibold NavLink active:text-[#039477]" to='/services' >Dashboard</Link></li>
-    <div></div>
-    
+  const navItems = (
+    <>
+      <li>
+        <Link
+          className="text-xl font-semibold NavLink active:text-[#039477]"
+          to="/"
+        >
+          Home
+        </Link>
+      </li>
+      <li>
+        <Link
+          className="text-xl font-semibold NavLink active:text-[#039477]"
+          to="/instructors"
+        >
+          Instructors
+        </Link>
+      </li>
+      <li>
+        <Link
+          className="text-xl font-semibold NavLink active:text-[#039477]"
+          to="/classes"
+        >
+          Classes
+        </Link>
+      </li>
+      <li>
+        <Link
+          className="text-xl font-semibold NavLink active:text-[#039477]"
+          to="/dashboard"
+        >
+          Dashboard
+        </Link>
+      </li>
+      <div></div>
     </>
+  );
 
   return (
-    <div className="navbar max-w-screen-xl mx-auto bg-base-100 ">
+    <div className="navbar max-w-screen-xl mx-auto bg-base-100 h-[75px] z-10">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -49,25 +76,54 @@ const Navbar = () => {
             {/* {navItems} */}
           </ul>
         </div>
-        <Link Link to="/" className="main-logo btn btn-ghost normal-case text-xl">
-          <img className="" src='https://i.ibb.co/fCqMFwv/main-logo.png' alt="logooo" />
+        <Link
+          Link
+          to="/"
+          className="main-logo btn btn-ghost normal-case text-xl"
+        >
+          <img
+            className=""
+            src="https://i.ibb.co/fCqMFwv/main-logo.png"
+            alt="logooo"
+          />
         </Link>
-        <Link Link to="/" className="second-logo btn btn-ghost normal-case text-xl">
-          <img className="max-h-[55px]" src='https://i.ibb.co/7r2rN2z/mini-logo.png' alt="logo" />
+        <Link
+          Link
+          to="/"
+          className="second-logo btn btn-ghost normal-case text-xl"
+        >
+          <img
+            className="max-h-[55px]"
+            src="https://i.ibb.co/7r2rN2z/mini-logo.png"
+            alt="logo"
+          />
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{navItems}</ul>
       </div>
-      < div className="navbar-end">
-        
-        <li><button className="btn bg-[#039477] hover:bg-[#3bb89f] text-white" onClick=''
-        //{handleLogOut}
-         >log out</button></li> 
-        
-        <li><Link className="btn bg-[#039477] hover:bg-[#3bb89f] text-white" to='/login' >login</Link></li>   
-    
-        
+      <div className="navbar-end">
+        {user?.email ? (
+          <>
+            <img
+              className="w-8 rounded-full"
+              src={user?.photoURL}
+              alt="img"
+              title={user.displayName}
+            />
+            <Link onClick={handleLogOut}>
+              <button className="btn bg-[#039477] hover:bg-[#3bb89f] text-white">
+                logout
+              </button>
+            </Link>
+          </>
+        ) : (
+          <Link to="login">
+            <button className="btn bg-[#039477] hover:bg-[#3bb89f] text-white">
+              Login
+            </button>
+          </Link>
+        )}
       </div>
     </div>
   );

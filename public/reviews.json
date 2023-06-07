@@ -1,0 +1,68 @@
+[
+    {
+      "name": "Mushfiqur Rahman",
+      "email": "Mushfiq@rahman.com",
+      "image": "image",
+      "role": "admin"
+    },
+    {
+      "name": "Raenchow",
+      "email": "raen@chow.com",
+      "image": "https://i.ibb.co/0DNtYmm/photo-1568602471122-7832951cc4c5-ixlib-rb-4-0.jpg",
+      "role": "instructor"
+    },
+    {
+      "name": "Farhan quraeshi",
+      "email": "farhan@quraeshi.com",
+      "image": "https://i.ibb.co/SBTdyhY/photo-1557862921-37829c790f19-ixlib-rb-4-0.jpg",
+      "role": "instructor"
+    },
+    {
+      "name": "Raju rastogi",
+      "email": "Raju@rastogi.com",
+      "image": "https://i.ibb.co/hLS3F27/premium-photo-1663126288619-f8ef33cd006b-ixlib-rb-4-0.jpg",
+      "role": "instructor"
+    },
+    {
+      "name": "Doris Wilson",
+      "email": "doris@wilson.com",
+      "image": "https://i.ibb.co/XyFj1Ns/premium-photo-1663126319781-f4de55c7ebd4-ixlib-rb-4-0.jpg",
+      "role": "instructor"
+    },
+    {
+      "name": "Amy Smith",
+      "email": "amy@smith.com",
+      "image": "https://i.ibb.co/hXY57w9/premium-photo-1683195788099-0f83ca85ec65-ixlib-rb-4-0.jpg",
+      "role": "instructor"
+    },
+    {
+      "name": "Whitecotton",
+      "email": "white@cotton.com",
+      "image": "https://i.ibb.co/qpfHP5d/photo-1472099645785-5658abf4ff4e-ixlib-rb-4-0.jpg",
+      "role": "instructor"
+    },
+    {
+      "name": "Tanveer",
+      "email": "tan@veer.com",
+      "image": "image",
+      "role": "user"
+    },
+    {
+      "name": "Shishir monir",
+      "email": "shishir@monir.com",
+      "image": "image",
+      "role": "user"
+    },
+    {
+      "name": "Bappi ahmed",
+      "email": "bappi@ahmed.com",
+      "image": "image",
+      "role": "user"
+    },
+    {
+      "name": "Arif hossain",
+      "email": "Arif@hossain.com",
+      "image": "image",
+      "role": "user"
+    }
+  ]
