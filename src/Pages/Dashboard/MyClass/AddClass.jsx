@@ -1,80 +1,79 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import Swal from 'sweetalert2';
+import { AuthContext } from '../../../Provider/AuthProvider';
 
 const AddClass = () => {
-
-
-    const handleAddService = (event) => {
+    const { user } = useContext(AuthContext);
+    // console.log(user);
+    const handleAddClass = (event) => {
         event.preventDefault();
         const form = event.target;
-        const name = form.name.value;
-        const address = form.address.value;
-        const occupation = form.occupation.value;
-        const mobile = form.mobile.value;
-        const details = form.details.value;
+        const className = form.className.value;
+        const photoURL = form.photoURL.value;
+        const displayName = user.displayName;
+        const email = user.email;
+        const seats = form.seats.value;
+        const price = form.price.value;
        
     
-        const newService = { name, address, occupation, mobile, details };
-        console.log(newService);
+        const addClass = { className, photoURL, displayName, email, seats, price};
+        console.log(addClass);
     
         // send data to the server
-        fetch("http://localhost:5000/service", {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(newService)
-        })
-          .then(res => res.json())
-          .then(data => {
-            console.log(data);
-            if (data.insertedId) {
-                Swal.fire({
-                    title: 'Success!',
-                    text: 'Service added successfully',
-                    icon: 'success',
-                    confirmButtonText: 'Cool'
-                  })
-            }
-          })
+        // fetch("http://localhost:5000/classes", {
+        //     method: 'POST',
+        //     headers: {
+        //         'content-type': 'application/json'
+        //     },
+        //     body: JSON.stringify(addClass)
+        // })
+        //   .then(res => res.json())
+        //   .then(data => {
+        //     console.log(data);
+        //     if (data.insertedId) {
+        //         Swal.fire({
+        //             title: 'Success!',
+        //             text: 'Class added successfully',
+        //             icon: 'success',
+        //             confirmButtonText: 'Cool'
+        //           })
+        //     }
+        //   })
       }
 
 
 
     return (
         <div className="max-w-screen-xl mx-auto bg-[#e2e2e281]">
-      <h2 className="text-5xl py-10 font-semibold text-center">Add any service</h2>
+      <h2 className="text-5xl py-10 font-semibold text-center">Add a class</h2>
 
       {/*----------------add service form-------------------*/}
 
       <div className="px-20 ">
-        <form onSubmit={handleAddService}>
+        <form onSubmit={handleAddClass}>
           {/* form name and quantity row */}
 
           <div className="md:flex mb-8 ">
             <div className="form-control lg:mr-4 md:w-1/2">
               <label className="label">
-                <span className="label-text">Your name<span className="text-red-600">*</span></span>
+                <span className="label-text">Class Name<span className="text-red-600">*</span></span>
               </label>
               <label className="input-group">
                 <input
-                  name="name"
+                  name="className"
                   type="text"
-                  placeholder="Write your name"
+                  placeholder="Class name"
                   className="input input-bordered w-full"
+                  required
                 />
               </label>
             </div>
             <div className="form-control md:w-1/2">
               <label className="label">
-                <span className="label-text">Address<span className="text-red-600">*</span></span>
+                <span className="label-text">Image<span className="text-red-600">*</span></span>
               </label>
               <label className="input-group">
-                <input
-                  name="address"
-                  type="text"
-                  placeholder="address"
-                  className="input input-bordered w-full"
-                />
+              <input type="file" name="photoURL" className="file-input w-full max-w-xs" required />
               </label>
             </div>
           </div>
@@ -84,54 +83,75 @@ const AddClass = () => {
           <div className="md:flex mb-8">
           <div className="form-control md:w-1/2 lg:mr-4">
               <label className="label">
-                <span className="label-text">Occupation<span className="text-red-600">*</span></span>
+                <span className="label-text">Instructor Name<span className="text-red-600">*</span></span>
               </label>
               <label className="input-group">
                 <input
-                  name="occupation"
+                  name="displayName"
                   type="text"
-                  placeholder="Your occupation"
+                  placeholder="Your name"
                   className="input input-bordered w-full"
+                  defaultValue={user.displayName}
+                  readOnly
                 />
               </label>
             </div>
             <div className="form-control md:w-1/2">
               <label className="label">
-                <span className="label-text">Mobile number<span className="text-red-600">*</span></span>
+                <span className="label-text">Instructor Email<span className="text-red-600">*</span></span>
               </label>
               <label className="input-group">
                 <input
-                  name="mobile"
-                  type="text"
-                  placeholder="Mobile number"
+                  name="email"
+                  type="email"
+                  placeholder="Your email"
                   className="input input-bordered w-full"
-                  pattern="^[0-9]+$"
-                  title="Please enter only numeric values"
-                  required
+                  defaultValue={user.email}
+                  readOnly
                 />
               </label>
             </div>
             
           </div>
 
-          {/* form details row */}
+          
+          {/* available seat and price row */}
 
-          <div className="mb-8">
-            <div className="form-control w-full">
+          <div className="md:flex mb-8">
+          <div className="form-control md:w-1/2 lg:mr-4">
               <label className="label">
-                <span className="label-text">Details</span>
+                <span className="label-text">Available seats<span className="text-red-600">*</span></span>
               </label>
               <label className="input-group">
-                <textarea
-                  name="details"
+                <input
+                  name="seats"
                   type="text"
-                  placeholder="details"
+                  placeholder="Seat"
                   className="input input-bordered w-full"
+                  required
                 />
               </label>
             </div>
-          </div>
-          <input className="btn btn-block my-10 text-white bg-[#039477] hover:bg-[#3bb89f]" type="submit" value="add service" />
+            <div className="form-control md:w-1/2">
+              <label className="label">
+                <span className="label-text">price<span className="text-red-600">*</span></span>
+              </label>
+              <label className="input-group">
+                <input
+                  name="price"
+                  type="text"
+                  placeholder="price"
+                  className="input input-bordered w-full"
+                  pattern="^[0-9]+$"
+                  title="Please enter only numeric values"
+                  required
+                />
+              </label>
+            </div>            
+          </div>         
+
+          
+          <input className="btn btn-block my-10 text-white bg-[#081b29] hover:bg-[#081b29c5]" type="submit" value="add service" />
         </form>
       </div>
         </div>

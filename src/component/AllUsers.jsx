@@ -25,7 +25,8 @@ const AllUsers = () => {
       .then(data => {
           console.log(data);
           if (data.modifiedCount) {
-            refetch();
+            // refetch();
+            window.location.reload(false);
               Swal.fire({
                   icon: 'success',
                   title: `${user.displayName} is an Instructor now!`,
