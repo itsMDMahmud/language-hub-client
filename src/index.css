@@ -6,14 +6,16 @@
 
 
 .dashnav{
-    background-color: #039477b9;
+    background-color: #081b29;
     font-size: medium;
     font-weight: 600;
     color: white;
+    margin: 5px 0;
+    border: 1px solid white;
     
 }
 .dashnav:hover{
-    background-color: #039477;
+    background-color: #6387a0;
 }
 
 @media (max-width: 576px) {

@@ -7,16 +7,16 @@ const Instructors = () => {
   // const [alluser] = useMenu();
   const {allAdmin, allInstructor, allStudent} = useContext(AuthContext);
 
-//   const allAdmin = alluser.filter(
-//     (admin) => admin.role === "admin"
-//   );
-//   const allInstructor = alluser.filter(
-//     (instructor) => instructor.role === "instructor"
-//   );
-//   const allStudent = alluser.filter(
-//     (student) => student.role === "user"
-//   );
-//   console.log(allInstructor);
+  // const allAdmin = alluser.filter(
+  //   (admin) => admin.role === "admin"
+  // );
+  // const allInstructor = alluser.filter(
+  //   (instructor) => instructor.role === "instructor"
+  // );
+  // const allStudent = alluser.filter(
+  //   (student) => student.role === "user"
+  // );
+  // console.log(allInstructor);
 
   return (
     <div className="max-w-screen-xl grid md:grid-cols-3 mx-auto gap-4">

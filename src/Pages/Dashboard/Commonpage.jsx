@@ -1,9 +1,12 @@
 import React from 'react';
 
 const Commonpage = () => {
+    
+    
+
     return (
         <div>
-            welcome to dashboard common page
+           <h2>welcome to common dashboard</h2>
         </div>
     );
 };

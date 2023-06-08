@@ -10,6 +10,7 @@ import MyClass from "../Pages/Dashboard/MyClass/MyClass";
 import Dashboard from "../Layout/Dashboard";
 import Commonpage from "../Pages/Dashboard/Commonpage";
 import PrivateRoute from "./PrivateRoute";
+import AllUsers from "../component/AllUsers";
 
 export const router = createBrowserRouter([
   {
@@ -50,6 +51,10 @@ export const router = createBrowserRouter([
       {
         path: 'myclass',
         element: <MyClass/>
+      },
+      {
+        path: 'allusers',
+        element: <AllUsers/>
       },
     ],
   },
