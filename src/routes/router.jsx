@@ -11,6 +11,8 @@ import Dashboard from "../Layout/Dashboard";
 import Commonpage from "../Pages/Dashboard/Commonpage";
 import PrivateRoute from "./PrivateRoute";
 import AllUsers from "../component/AllUsers";
+import UserCart from "../component/UserCart";
+import AddClass from "../Pages/Dashboard/MyClass/AddClass";
 
 export const router = createBrowserRouter([
   {
@@ -49,12 +51,20 @@ export const router = createBrowserRouter([
         element: <Commonpage/>
       },
       {
+        path: 'Addclass',
+        element: <AddClass/>
+      },
+      {
         path: 'myclass',
         element: <MyClass/>
       },
       {
         path: 'allusers',
-        element: <AllUsers/>
+        element: <PrivateRoute><AllUsers/></PrivateRoute>
+      },
+      {
+        path: 'cart',
+        element: <UserCart/>
       },
     ],
   },

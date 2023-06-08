@@ -6,7 +6,7 @@ const Commonpage = () => {
 
     return (
         <div>
-           <h2>welcome to common dashboard</h2>
+           <h2 className='' >welcome to common dashboard</h2>
         </div>
     );
 };

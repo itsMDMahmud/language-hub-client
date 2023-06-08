@@ -8,39 +8,48 @@ import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 // import useAxiosSecure from "../../hooks/useAxiosSecure";
 
-const AllUsers = () => {
+const UserCart = () => {
     const [alluser] = useMenu();
     // const [axiosSecure] = useAxiosSecure();
     const { data: users = [], refetch } = useQuery(["users"], async () => {
       const res = await fetch("http://localhost:5000/users");
       return res.data;
     });
+
+    // const handleMakeAdmin = user => {
   
-    const handleMakeAdmin = user => {
-  
-      fetch(`http://localhost:5000/users/admin/${user._id}`, {
-          method: 'PATCH'        
-      })
-      .then(res => res.json())
-      .then(data => {
-          console.log(data);
-          if (data.modifiedCount) {
-            refetch();
-              Swal.fire({
-                  icon: 'success',
-                  title: `${user.displayName} is an Instructor now!`,
-                  showConfirmButton: false,
-                  timer: 1500
-                })
-          }
-      })
-    }
+    //   fetch(`http://localhost:5000/users/admin/${user._id}`, {
+    //       method: 'PATCH'        
+    //   })
+    //   .then(res => res.json())
+    //   .then(data => {
+    //       console.log(data);
+    //       if (data.modifiedCount) {
+    //           refetch();
+    //           Swal.fire({
+    //               icon: 'success',
+    //               title: `${user.name} is an Admin now!`,
+    //               showConfirmButton: false,
+    //               timer: 1500
+    //             })
+    //       }
+    //   })
+    // }
     
     const handleDelete = user => {
   
     }
-  return (
-    <div className="w-full">         
+
+    return (
+       <div className="w-full">
+      {/* <Helmet>
+        <title>My Cart</title>
+      </Helmet> */}
+      <div className="uppercase font-bold flex justify-evenly">
+        <h2 className="text-2xl">Total Item: {users.length}</h2>
+        {/* <h2 className="text-2xl">Total price: {total}</h2> */}
+        <Link to='/dashboard/payment'> <button className="btn btn-warning btn-sm">Pay</button></Link>
+      </div>
       <div className="overflow-x-auto w-full">
         <table className="table w-full">
           {/* head */}
@@ -49,13 +58,13 @@ const AllUsers = () => {
               <th>#</th>
               <th>Image</th>
               <th>Item name</th>
-              <th className="">Price</th>
+              <th className="text-end">Price</th>
               <th>Action</th>
             </tr>
           </thead>
           <tbody>
             {
-                alluser.map((user, index) => <tr key={user._id}>
+                users.map((user, index) => <tr key={user._id}>
                 <th>{index + 1}</th>
                 <td>
                   <div className="flex items-center space-x-3">
@@ -68,12 +77,9 @@ const AllUsers = () => {
                   </div>
                 </td>
                 <td>{user?.displayName}</td>
-                <td className="">$ {user?.email}</td>
-                <td className=""> {
-                    user.role === 'instructor' ? 'Instructor' : <button onClick={() => handleMakeAdmin(user)} className="btn btn-ghost bg-teal-500 text-white"><FaUserShield/> </button>
-                }</td>
+                <td className="text-end">$ {user?.email}</td>
                 <th>
-                  <button onClick={() => handleDelete(user)} className="btn btn-ghost bg-red-500 text-white"><FaTrashAlt/> </button>
+                  <button onClick={() => handleDelete(item)} className="btn btn-ghost bg-red-500 text-white"><FaTrashAlt/> </button>
                 </th>
               </tr>)
             }
@@ -82,18 +88,7 @@ const AllUsers = () => {
         </table>
       </div>
     </div>
-
-
-    // <div className="max-w-screen-xl grid md:grid-cols-3 mx-auto gap-4">
-    //   {alluser.map((oneuser) => (
-    //     <UserCard 
-    //         key={oneuser._id} 
-    //         oneuser={oneuser}
-    //     ></UserCard>
-    //   ))}
-    //   hmm
-    // </div>
-  );
+    );
 };
 
-export default AllUsers;
+export default UserCart;
