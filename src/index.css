@@ -4,6 +4,18 @@
 
 
 
+
+.dashnav{
+    background-color: #039477b9;
+    font-size: medium;
+    font-weight: 600;
+    color: white;
+    
+}
+.dashnav:hover{
+    background-color: #039477;
+}
+
 @media (max-width: 576px) {
     .main-logo{
         display: none;
