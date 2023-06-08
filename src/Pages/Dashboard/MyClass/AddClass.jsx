@@ -1,50 +1,63 @@
-import React, { useContext } from 'react';
-import Swal from 'sweetalert2';
-import { AuthContext } from '../../../Provider/AuthProvider';
+import React, { useContext } from "react";
+import Swal from "sweetalert2";
+import { AuthContext } from "../../../Provider/AuthProvider";
+import { Navigate } from "react-router-dom";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const AddClass = () => {
-    const { user } = useContext(AuthContext);
-    // console.log(user);
-    const handleAddClass = (event) => {
-        event.preventDefault();
-        const form = event.target;
-        const className = form.className.value;
-        const photoURL = form.photoURL.value;
-        const displayName = user.displayName;
-        const email = user.email;
-        const seats = form.seats.value;
-        const price = form.price.value;
-       
-    
-        const addClass = { className, photoURL, displayName, email, seats, price};
-        console.log(addClass);
-    
-        // send data to the server
-        // fetch("http://localhost:5000/classes", {
-        //     method: 'POST',
-        //     headers: {
-        //         'content-type': 'application/json'
-        //     },
-        //     body: JSON.stringify(addClass)
-        // })
-        //   .then(res => res.json())
-        //   .then(data => {
-        //     console.log(data);
-        //     if (data.insertedId) {
-        //         Swal.fire({
-        //             title: 'Success!',
-        //             text: 'Class added successfully',
-        //             icon: 'success',
-        //             confirmButtonText: 'Cool'
-        //           })
-        //     }
-        //   })
-      }
+    const [axiosSecure] = useAxiosSecure();
+  const { user } = useContext(AuthContext);
+  // console.log(user);
+  const handleAddClass = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const className = form.className.value;
+    const image = form.photoURL.files[0]; //files
+    const displayName = user.displayName;
+    const email = user.email;
+    const seats = form.seats.value;
+    const price = form.price.value;
 
+    // const addClass = (className, image, displayName, email, seats, price);
 
+    const formData = new FormData();
+    formData.append("image", image);
 
-    return (
-        <div className="max-w-screen-xl mx-auto bg-[#e2e2e281]">
+    const url = `https://api.imgbb.com/1/upload?key=${
+      import.meta.env.VITE_image_upload_token
+    }`;
+    // console.log(url);
+
+    fetch(url, {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((imageData) => {
+        if (imageData.success) {
+          const imgURL = imageData.data.display_url;
+          const addClass = {className, photoURL:imgURL , displayName, email, seats, price: parseFloat(price)};
+          console.log(addClass);
+          axiosSecure.post('http://localhost:5000/classes', addClass)
+          .then(data => {
+              console.log('after posting new menu item', data.data);
+              if (data.data.insertedId) {
+                //   reset();
+                  Swal.fire({
+                      icon: 'success',
+                      title: `${className} added successfully`,
+                      showConfirmButton: false,
+                      timer: 1500
+                    })
+              }
+          })
+        
+        }
+      });
+  };
+
+  return (
+    <div className="max-w-screen-xl mx-auto bg-[#e2e2e281]">
       <h2 className="text-5xl py-10 font-semibold text-center">Add a class</h2>
 
       {/*----------------add service form-------------------*/}
@@ -56,7 +69,9 @@ const AddClass = () => {
           <div className="md:flex mb-8 ">
             <div className="form-control lg:mr-4 md:w-1/2">
               <label className="label">
-                <span className="label-text">Class Name<span className="text-red-600">*</span></span>
+                <span className="label-text">
+                  Class Name<span className="text-red-600">*</span>
+                </span>
               </label>
               <label className="input-group">
                 <input
@@ -70,10 +85,18 @@ const AddClass = () => {
             </div>
             <div className="form-control md:w-1/2">
               <label className="label">
-                <span className="label-text">Image<span className="text-red-600">*</span></span>
+                <span className="label-text">
+                  Image<span className="text-red-600">*</span>
+                </span>
               </label>
               <label className="input-group">
-              <input type="file" name="photoURL" className="file-input w-full max-w-xs" required />
+                <input
+                  type="file"
+                  accept="image/*"
+                  name="photoURL"
+                  className="file-input w-full max-w-xs"
+                  required
+                />
               </label>
             </div>
           </div>
@@ -81,9 +104,11 @@ const AddClass = () => {
           {/* form service and address row */}
 
           <div className="md:flex mb-8">
-          <div className="form-control md:w-1/2 lg:mr-4">
+            <div className="form-control md:w-1/2 lg:mr-4">
               <label className="label">
-                <span className="label-text">Instructor Name<span className="text-red-600">*</span></span>
+                <span className="label-text">
+                  Instructor Name<span className="text-red-600">*</span>
+                </span>
               </label>
               <label className="input-group">
                 <input
@@ -98,7 +123,9 @@ const AddClass = () => {
             </div>
             <div className="form-control md:w-1/2">
               <label className="label">
-                <span className="label-text">Instructor Email<span className="text-red-600">*</span></span>
+                <span className="label-text">
+                  Instructor Email<span className="text-red-600">*</span>
+                </span>
               </label>
               <label className="input-group">
                 <input
@@ -111,16 +138,16 @@ const AddClass = () => {
                 />
               </label>
             </div>
-            
           </div>
 
-          
           {/* available seat and price row */}
 
           <div className="md:flex mb-8">
-          <div className="form-control md:w-1/2 lg:mr-4">
+            <div className="form-control md:w-1/2 lg:mr-4">
               <label className="label">
-                <span className="label-text">Available seats<span className="text-red-600">*</span></span>
+                <span className="label-text">
+                  Available seats<span className="text-red-600">*</span>
+                </span>
               </label>
               <label className="input-group">
                 <input
@@ -134,7 +161,9 @@ const AddClass = () => {
             </div>
             <div className="form-control md:w-1/2">
               <label className="label">
-                <span className="label-text">price<span className="text-red-600">*</span></span>
+                <span className="label-text">
+                  price<span className="text-red-600">*</span>
+                </span>
               </label>
               <label className="input-group">
                 <input
@@ -147,15 +176,18 @@ const AddClass = () => {
                   required
                 />
               </label>
-            </div>            
-          </div>         
+            </div>
+          </div>
 
-          
-          <input className="btn btn-block my-10 text-white bg-[#081b29] hover:bg-[#081b29c5]" type="submit" value="add service" />
+          <input
+            className="btn btn-block my-10 text-white bg-[#081b29] hover:bg-[#081b29c5]"
+            type="submit"
+            value="add service"
+          />
         </form>
       </div>
-        </div>
-    );
+    </div>
+  );
 };
 
 export default AddClass;
