@@ -40,7 +40,7 @@ const Navbar = () => {
       <li>
         <Link
           className="text-xl font-semibold NavLink active:text-[#039477]"
-          to="/dashboard"
+          to="/dashboard/commonpage"
         >
           Dashboard
         </Link>

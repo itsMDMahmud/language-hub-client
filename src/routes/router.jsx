@@ -8,6 +8,8 @@ import Instructors from "../component/Instructors/Instructors";
 import Classes from "../component/Classes/Classes";
 import MyClass from "../Pages/Dashboard/MyClass/MyClass";
 import Dashboard from "../Layout/Dashboard";
+import Commonpage from "../Pages/Dashboard/Commonpage";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -39,12 +41,16 @@ export const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <Dashboard/>,    
+    element: <PrivateRoute><Dashboard/></PrivateRoute>,    
     children: [
+      {
+        path: 'commonpage',
+        element: <Commonpage/>
+      },
       {
         path: 'myclass',
         element: <MyClass/>
-      }
+      },
     ],
   },
 ]);

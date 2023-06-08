@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
+import { Navigate } from "react-router-dom";
 
 
 const SocialLogin = () => {
@@ -8,6 +9,20 @@ const SocialLogin = () => {
         googleSignIn()
         .then( result => {
             console.log(result.user)
+            const loggedInUser = result.user;
+                console.log(loggedInUser);
+                const saveUser = { displayName: loggedInUser.displayName, role: "user", email: loggedInUser.email, photoURL: loggedInUser.photoURL }
+                fetch(`http://localhost:5000/users`, {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(saveUser)
+                })
+                    .then(res => res.json())
+                    .then(() => {
+                        Navigate(from, { replace: true })
+                    })
         })
         .catch(error => console.log(error))
     }

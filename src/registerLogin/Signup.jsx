@@ -6,44 +6,61 @@ import { AuthContext } from "../Provider/AuthProvider";
 import Swal from "sweetalert2";
 
 const Signup = () => {
-  const { register, handleSubmit, reset, formState: { errors }} = useForm();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
   const [password, setPassword] = useState("");
   const { createUser, updateUserProfile } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const onSubmit = (data) => {
-    console.log(data);
-    createUser(data?.email, data?.password)
-    .then(result => {
-      const loggedUser =result.user;
+    // console.log(data);
+    createUser(data?.email, data?.password).then((result) => {
+      const loggedUser = result.user;
       console.log(loggedUser);
-      updateUserProfile(data.displayName, data.photoURL, data.phoneNumber )
-      .then(()=> {
-        const saveUser = {nameame: data?.displayName, phoneNumber: data?.phoneNumber, photoURL: data?.photoURL }
-        fetch('http://localhost:5000/users', {
-          method: 'POST',
-          headers: {
-            'content-type': 'application/json'
-          },
-          body: JSON.stringify(saveUser) 
-        })
-        .then(res => res.json())
-        .then(data => {
-          if (data.insertedId) {
-            reset();
-            Swal.fire({
-              icon: 'success',
-              title: 'User Created Successfully',
-              showConfirmButton: false,
-              timer: 1500
-            })
-            navigate('/')
-          }
-        })
-        // console.log("profile updates");
-       
-      })
-    })
+
+      updateUserProfile(
+        data.displayName,
+        data?.email,
+        data.photoURL,
+        data.phoneNumber
+      )
+        // console.log(updateUserProfile)
+        .then(() => {
+          const saveUser = {
+            displayName: data?.displayName,
+            email: data?.email,
+            phoneNumber: data?.phoneNumber,
+            photoURL: data?.photoURL,
+          };
+          console.log(saveUser);
+          fetch('http://localhost:5000/users',{
+            method: 'POST',
+            headers: {
+              'content-type': 'application/json'
+            },
+            body: JSON.stringify(saveUser)
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              if (data.insertedId)
+               {
+                reset();
+                Swal.fire({
+                  icon: "success",
+                  title: "User Created Successfully",
+                  showConfirmButton: false,
+                  timer: 1500,
+                });
+                navigate("/");
+              }
+            });
+          // console.log("profile updates");
+        });
+    });
     // Perform registration logic here
   };
 
@@ -203,7 +220,7 @@ const Signup = () => {
               value="Signup"
             />
           </div>
-          <SocialLogin/>
+          <SocialLogin />
         </form>
         <p className="text-center pb-5">
           Already have account? please
@@ -218,7 +235,6 @@ const Signup = () => {
 };
 
 export default Signup;
-
 
 //displayName
 //phoneNumber

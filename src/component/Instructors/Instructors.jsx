@@ -4,7 +4,7 @@ import SingInstructor from "./SingInstructor";
 import { AuthContext } from "../../Provider/AuthProvider";
 
 const Instructors = () => {
-  const [alluser] = useMenu();
+  // const [alluser] = useMenu();
   const {allAdmin, allInstructor, allStudent} = useContext(AuthContext);
 
 //   const allAdmin = alluser.filter(
