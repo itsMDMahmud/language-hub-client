@@ -28,7 +28,7 @@ const AllUsers = () => {
           window.location.reload(false);
           Swal.fire({
             icon: "success",
-            title: `${user.displayName} is an admin now!`,
+            title: `${user.displayName} is an instructor now!`,
             showConfirmButton: false,
             timer: 1500,
           });
@@ -47,7 +47,7 @@ const AllUsers = () => {
           window.location.reload(false);
           Swal.fire({
             icon: "success",
-            title: `${user.displayName} is an Instructor now!`,
+            title: `${user.displayName} is an Admin now!`,
             showConfirmButton: false,
             timer: 1500,
           });
