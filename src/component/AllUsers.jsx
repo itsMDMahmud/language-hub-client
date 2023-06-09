@@ -9,39 +9,55 @@ import { Link } from "react-router-dom";
 // import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const AllUsers = () => {
-    const [alluser] = useMenu();
-    // const [axiosSecure] = useAxiosSecure();
-    const { data: users = [], refetch } = useQuery(["users"], async () => {
-      const res = await fetch("http://localhost:5000/users");
-      return res.data;
-    });
-  
-    const handleMakeAdmin = user => {
-  
-      fetch(`http://localhost:5000/users/admin/${user._id}`, {
-          method: 'PATCH'        
-      })
-      .then(res => res.json())
-      .then(data => {
-          console.log(data);
-          if (data.modifiedCount) {
-            // refetch();
-            window.location.reload(false);
-              Swal.fire({
-                  icon: 'success',
-                  title: `${user.displayName} is an Instructor now!`,
-                  showConfirmButton: false,
-                  timer: 1500
-                })
-          }
-      })
-    }
-    
-    const handleDelete = user => {
-  
-    }
+  const [alluser] = useMenu();
+  // const [axiosSecure] = useAxiosSecure();
+  const { data: users = [], refetch } = useQuery(["users"], async () => {
+    const res = await fetch("http://localhost:5000/users");
+    return res.data;
+  });
+
+  const handleMakeInstructor = (user) => {
+    fetch(`http://localhost:5000/users/instructor/${user._id}`, {
+      method: "PATCH",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.modifiedCount) {
+          // refetch();
+          window.location.reload(false);
+          Swal.fire({
+            icon: "success",
+            title: `${user.displayName} is an admin now!`,
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      });
+  };
+  const handleMakeAdmin = (user) => {
+    fetch(`http://localhost:5000/users/admin/${user._id}`, {
+      method: "PATCH",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.modifiedCount) {
+          // refetch();
+          window.location.reload(false);
+          Swal.fire({
+            icon: "success",
+            title: `${user.displayName} is an Instructor now!`,
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      });
+  };
+
+  const handleDelete = (user) => {};
   return (
-    <div className="w-full">         
+    <div className="w-full">
       <div className="overflow-x-auto w-full">
         <table className="table w-full">
           {/* head */}
@@ -49,14 +65,14 @@ const AllUsers = () => {
             <tr>
               <th>#</th>
               <th>Image</th>
-              <th>Item name</th>
-              <th className="">Price</th>
-              <th>Action</th>
+              <th>User Name</th>
+              <th className="">Email</th>
+              <th>Role</th>
             </tr>
           </thead>
           <tbody>
-            {
-                alluser.map((user, index) => <tr key={user._id}>
+            {alluser.map((user, index) => (
+              <tr key={user._id}>
                 <th>{index + 1}</th>
                 <td>
                   <div className="flex items-center space-x-3">
@@ -65,30 +81,28 @@ const AllUsers = () => {
                         <img src={user?.photoURL} />
                       </div>
                     </div>
-                    
                   </div>
                 </td>
                 <td>{user?.displayName}</td>
                 <td className="">$ {user?.email}</td>
                 <td className=""> {
-                    user.role === 'instructor' ? 'Instructor' : <button onClick={() => handleMakeAdmin(user)} className="btn btn-ghost bg-teal-500 text-white"><FaUserShield/> </button>
+                    user.role === 'instructor'  ? 'Instructor' : <button onClick={() => handleMakeInstructor(user)} className="btn btn-ghost bg-teal-500 text-white"><FaUserShield/> </button>
                 }</td>
-                <th>
-                  <button onClick={() => handleDelete(user)} className="btn btn-ghost bg-red-500 text-white"><FaTrashAlt/> </button>
-                </th>
-              </tr>)
-            }
-            
+                
+                <td className=""> {
+                    user.role === 'admin'  ? 'Admin' : <button onClick={() => handleMakeAdmin(user)} className="btn btn-ghost bg-[#ff7979] text-white"><FaUserShield/> </button>
+                }</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
     </div>
 
-
     // <div className="max-w-screen-xl grid md:grid-cols-3 mx-auto gap-4">
     //   {alluser.map((oneuser) => (
-    //     <UserCard 
-    //         key={oneuser._id} 
+    //     <UserCard
+    //         key={oneuser._id}
     //         oneuser={oneuser}
     //     ></UserCard>
     //   ))}
