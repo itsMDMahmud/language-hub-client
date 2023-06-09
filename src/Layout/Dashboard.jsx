@@ -1,7 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, Outlet } from "react-router-dom";
+import { AuthContext } from "../Provider/AuthProvider";
+import useAdmin from "../hooks/useAdmin";
+import useCart from "../hooks/useCart";
+import useInstructor from "../hooks/useInstructor";
 
 const Dashboard = () => {
+  // const [cart, refetch] = useCart();
+  const [isAdmin, isAdminLoading, refetch] = useAdmin();
+  const [isInstructor, isInstructorLoading] = useInstructor();
+  // const [isInstructor, isInstructorLoading] = useAdmin();
+  console.log(isAdmin);
+  refetch();
   return (
     <div className="drawer lg:drawer-open">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -19,15 +29,29 @@ const Dashboard = () => {
         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
         <ul className="menu p-4 w-60 h-full  text-base-content">
           {/* Sidebar content here */}
-          <li> <Link className=" dashnav" to='/'>Home</Link> </li>
-          <li> <Link className=" dashnav" to='/dashboard/allusers'>Users</Link> </li>
+           <li> <Link className=" dashnav" to='/'>Home</Link> </li>
+          <li> <Link className=" dashnav" to='/instructors'>Instructors</Link> </li>
+          <li> <Link className=" dashnav" to="/classes" > Classes </Link> </li>
+          {/*<li> <Link className=" dashnav" to='/dashboard/allusers'>Users</Link> </li>
           <li> <Link className=" dashnav" to='/dashboard/cart'>Cart</Link> </li>
           <li> <Link className=" dashnav " to='/dashboard/addclass'>Add Class</Link> </li>
+          <li> <Link className=" dashnav " to='/dashboard/myclass'>My classes</Link> </li> */}
+
+          {isAdmin  && 
+          <li> <Link className=" dashnav" to='/dashboard/allusers'>Users</Link> </li>
+          }
+          {isInstructor  && 
+          <>
+          <li> <Link className=" dashnav " to='/dashboard/addclass'>Add Class</Link> </li>
           <li> <Link className=" dashnav " to='/dashboard/myclass'>My classes</Link> </li>
+          </>
+          }
+
           <div className="divider"></div>
           
           <li>
             <a>Sidebar Item 2</a>
+            
           </li>
         </ul>
       </div>

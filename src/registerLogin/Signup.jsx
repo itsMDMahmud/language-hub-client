@@ -35,6 +35,7 @@ const Signup = () => {
             email: data?.email,
             phoneNumber: data?.phoneNumber,
             photoURL: data?.photoURL,
+            role: 'user',
           };
           console.log(saveUser);
           fetch('http://localhost:5000/users',{

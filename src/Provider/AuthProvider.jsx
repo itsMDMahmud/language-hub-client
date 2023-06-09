@@ -16,16 +16,16 @@ const auth = getAuth(app);
 const AuthProvider = ({children}) => {
     const [alluser] = useMenu();
 
-    const allAdmin = alluser.filter(
-        (admin) => admin.role === "admin"
-      );
-      const allInstructor = alluser.filter(
-        (instructor) => instructor.role === "instructor"
-      );
-      const allStudent = alluser.filter(
-        (student) => student.role === "user"
-      );
+    const allAdmin = alluser.filter( (admin) => admin.role === "admin" );
+    const admins = allAdmin.map(admin => admin);
+
+    const allInstructor = alluser.filter( (instructor) => instructor.role === "instructor" );
+    const instructors = allInstructor.map(instructor => instructor);
+
+    const allStudent = alluser.filter( (student) => student.role === "user" );
+    const users = allStudent.map(student => student);
     //allAdmin, allInstructor, allStudent
+    //isAdmin, isInstructor, isUser
 
 
     const [user, setUser] = useState(null);
@@ -95,7 +95,8 @@ const AuthProvider = ({children}) => {
         googleSignIn,
         logOut,
         updateUserProfile,
-        allAdmin, allInstructor, allStudent
+        allAdmin, allInstructor, allStudent,
+        admins, instructors, users,
     }
 
     return (

@@ -6,12 +6,14 @@ import React from "react";
 import { FaTrashAlt, FaUserShield } from "react-icons/fa";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
+import useAdmin from "../hooks/useAdmin";
 // import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const AllUsers = () => {
+  const [ refetch] = useAdmin();
   const [alluser] = useMenu();
   // const [axiosSecure] = useAxiosSecure();
-  const { data: users = [], refetch } = useQuery(["users"], async () => {
+  const { data: users = [] } = useQuery(["users"], async () => {
     const res = await fetch("http://localhost:5000/users");
     return res.data;
   });
@@ -24,7 +26,7 @@ const AllUsers = () => {
       .then((data) => {
         console.log(data);
         if (data.modifiedCount) {
-          // refetch();
+          refetch();
           window.location.reload(false);
           Swal.fire({
             icon: "success",
@@ -43,7 +45,7 @@ const AllUsers = () => {
       .then((data) => {
         console.log(data);
         if (data.modifiedCount) {
-          // refetch();
+          refetch();
           window.location.reload(false);
           Swal.fire({
             icon: "success",
