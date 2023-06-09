@@ -1,5 +1,5 @@
 // import React, { useEffect, useState } from "react";
-import StudentCourse from "./student/StudentCourse";
+import StudentCourse from "./student/studentCourse";
 
 const Commonpage = () => {
   
