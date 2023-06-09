@@ -1,7 +1,59 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthContext } from '../../Provider/AuthProvider';
+import Swal from 'sweetalert2';
+import { useLocation, useNavigate } from 'react-router-dom';
+import useCart from '../../hooks/useCart';
 
 const ClassCard = ({oneClass}) => {
+  const {user} = useContext(AuthContext);
     const {_id, className, photoURL, displayName, seats, price } = oneClass;
+    const [cart, refetch] = useCart();
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const handleAddToCart = oneClass => {
+      console.log(oneClass);
+
+      if (user && user.email) {
+        const cartItem = { CourseId:_id, className, photoURL, displayName, seats, price }
+        console.log(user.email);
+        // console.log(cartItem);
+        fetch("http://localhost:5000/carts", {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json'
+          },
+          body: JSON.stringify(cartItem)
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            if (data.insertedId) {
+              refetch(); //refetch for update the number of cart
+              Swal.fire({
+                icon: "success",
+                title: "Course added on cart",
+                showConfirmButton: false,
+                timer: 1500,
+              });
+            }
+          });
+      } else {
+        Swal.fire({
+          title: "Please Login to buy course",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "login Now!",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            navigate('/login', {state: {from: location}});
+          }
+        });
+      }
+
+    }
     return (
       <div className="card card-compact m-2 bg-base-100 shadow-xl">
         <figure>
@@ -18,7 +70,7 @@ const ClassCard = ({oneClass}) => {
               <p className="text-lg font-semibold mb-1">{seats} Seats available</p>
               <p className="uppercase text-lg font-semibold">$ {price}</p>
               </div>
-            <button className="btn bg-[#039477] hover:bg-[#3bb89f] text-white">Enroll Now</button>
+            <button onClick={() => handleAddToCart(oneClass)} className="btn bg-[#039477] hover:bg-[#3bb89f] text-white">Enroll Now</button>
           </div>
         </div>
       </div>
