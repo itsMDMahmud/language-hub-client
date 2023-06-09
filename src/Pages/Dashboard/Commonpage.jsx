@@ -1,14 +1,14 @@
-import React from 'react';
+// import React, { useEffect, useState } from "react";
+import StudentCourse from "./student/StudentCourse";
 
 const Commonpage = () => {
-    
-    
+  
 
-    return (
-        <div>
-           <h2 className='' >welcome to common dashboard</h2>
-        </div>
-    );
+  return (
+    <div>
+     <div><StudentCourse/></div>
+    </div>
+  );
 };
 
 export default Commonpage;

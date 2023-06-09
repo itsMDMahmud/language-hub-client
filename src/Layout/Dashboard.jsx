@@ -10,7 +10,7 @@ const Dashboard = () => {
   const [isAdmin, isAdminLoading, refetch] = useAdmin();
   const [isInstructor, isInstructorLoading] = useInstructor();
   // const [isInstructor, isInstructorLoading] = useAdmin();
-  console.log(isAdmin);
+  // console.log(isAdmin);
   refetch();
   return (
     <div className="drawer lg:drawer-open">

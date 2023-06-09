@@ -16,7 +16,7 @@ const ClassCard = ({oneClass}) => {
 
       if (user && user.email) {
         const cartItem = { CourseId:_id, className, photoURL, displayName, seats, price }
-        console.log(user.email);
+        // console.log(user.email);
         // console.log(cartItem);
         fetch("http://localhost:5000/carts", {
           method: 'POST',
@@ -29,7 +29,7 @@ const ClassCard = ({oneClass}) => {
           .then((data) => {
             console.log(data);
             if (data.insertedId) {
-              refetch(); //refetch for update the number of cart
+              //refetch(); //refetch for update the number of cart
               Swal.fire({
                 icon: "success",
                 title: "Course added on cart",
