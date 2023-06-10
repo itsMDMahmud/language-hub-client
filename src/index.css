@@ -17,6 +17,10 @@
 .dashnav:hover{
     background-color: #6387a0;
 }
+.herosecion{
+    background-image: url("https://wallpapercave.com/wp/wp1966398.png");
+}
+
 
 @media (max-width: 576px) {
     .main-logo{

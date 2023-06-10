@@ -29,28 +29,38 @@ const Dashboard = () => {
         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
         <ul className="menu p-4 w-60 h-full  text-base-content">
           {/* Sidebar content here */}
-           <li> <Link className=" dashnav" to='/'>Home</Link> </li>
-          <li> <Link className=" dashnav" to='/instructors'>Instructors</Link> </li>
-          <li> <Link className=" dashnav" to="/classes" > Classes </Link> </li>
+          <li> <Link className="dashnav" to='/'>Home</Link> </li>
+          <li> <Link className="dashnav" to='/instructors'>Instructors</Link> </li>
+          <li> <Link className="dashnav" to="/classes" > Classes </Link> </li>
+          <li> <Link className="dashnav" to="/dashboard/commonpage" >Dashboard</Link></li>
           {/*<li> <Link className=" dashnav" to='/dashboard/allusers'>Users</Link> </li>
           <li> <Link className=" dashnav" to='/dashboard/cart'>Cart</Link> </li>
           <li> <Link className=" dashnav " to='/dashboard/addclass'>Add Class</Link> </li>
           <li> <Link className=" dashnav " to='/dashboard/myclass'>My classes</Link> </li> */}
 
-          {isAdmin  && 
-          <li> <Link className=" dashnav" to='/dashboard/allusers'>Users</Link> </li>
-          }
-          {isInstructor  && 
+          {isAdmin  ?
+          <li> <Link className=" dashnav" to='/dashboard/allusers'>Users</Link> </li> 
+          :
+          <>
+          {isInstructor  ?
           <>
           <li> <Link className=" dashnav " to='/dashboard/addclass'>Add Class</Link> </li>
           <li> <Link className=" dashnav " to='/dashboard/myclass'>My classes</Link> </li>
+          </> :
+          <>
+          <li><Link className="dashnav" to='/dashboard/enrolled'>Enrolled Classes</Link></li>
+          <li><Link className="dashnav" to='/dashboard/history'>History</Link></li>
+          <li><Link className="dashnav" to='/dashboard/payment'>Payment</Link></li>
           </>
           }
+          </>
+          }         
+          
 
           <div className="divider"></div>
           
           <li>
-            <a>Sidebar Item 2</a>
+            {/* <a>Sidebar Item 2</a> */}
             
           </li>
         </ul>

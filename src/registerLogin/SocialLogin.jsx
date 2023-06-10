@@ -1,9 +1,11 @@
 import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
-import { Navigate } from "react-router-dom";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 
 
 const SocialLogin = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
     const {googleSignIn} = useContext(AuthContext);
     const handleGoogleSignIn = () => {
         googleSignIn()
@@ -21,7 +23,8 @@ const SocialLogin = () => {
                 })
                     .then(res => res.json())
                     .then(() => {
-                        Navigate(from, { replace: true })
+                        navigate(from, { replace: true } || '/');
+                        // navigate('/login', {state: {from: location}} || '/');
                     })
         })
         .catch(error => console.log(error))

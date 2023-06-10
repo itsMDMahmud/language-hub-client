@@ -13,6 +13,10 @@ import PrivateRoute from "./PrivateRoute";
 import AllUsers from "../component/AllUsers";
 import UserCart from "../component/UserCart";
 import AddClass from "../Pages/Dashboard/MyClass/AddClass";
+import EnrolledClasses from "../Pages/Dashboard/student/EnrolledClasses";
+import History from "../Pages/Dashboard/student/History";
+import Payment from "../Pages/Dashboard/student/Payment";
+import AdminRoute from "./AdminRoute";
 
 export const router = createBrowserRouter([
   {
@@ -51,8 +55,20 @@ export const router = createBrowserRouter([
         element: <Commonpage/>
       },
       {
-        path: 'Addclass',
+        path: 'addclass',
         element: <AddClass/>
+      },
+      {
+        path: 'enrolled',
+        element: <EnrolledClasses/>
+      },
+      {
+        path: 'payment',
+        element: <Payment/>
+      },
+      {
+        path: 'history',
+        element: <History></History>
       },
       {
         path: 'myclass',
@@ -60,7 +76,7 @@ export const router = createBrowserRouter([
       },
       {
         path: 'allusers',
-        element: <PrivateRoute><AllUsers/></PrivateRoute>
+        element: <AdminRoute><AllUsers/></AdminRoute>
       },
       {
         path: 'cart',
