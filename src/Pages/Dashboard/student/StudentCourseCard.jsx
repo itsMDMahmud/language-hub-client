@@ -25,7 +25,7 @@ const StudentCourseCard = ({ course, enrolledCourses, setEnrolledCourses }) => {
             console.log(data);
             if (data.deletedCount > 0) {
               Swal.fire("Deleted!",
-               "Your booked service has been deleted.",
+               "Your booked course has been deleted.",
                 "success");
                
                 const remaining = enrolledCourses.filter(singleService => singleService._id !== _id);

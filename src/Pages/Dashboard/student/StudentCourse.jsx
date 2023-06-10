@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import StudentCourseCard from "./StudentCourseCard";
+import { AuthContext } from "../../../Provider/AuthProvider";
 
 const StudentCourse = () => {
+    const {user} = useContext(AuthContext);
   const [enrolledCourses, setEnrolledCourses] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/carts")
+    fetch('http://localhost:5000/carts')
       .then((res) => res.json())
       .then((data) => setEnrolledCourses(data));
   }, []);

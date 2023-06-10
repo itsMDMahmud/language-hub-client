@@ -6,16 +6,17 @@ import useCart from '../../hooks/useCart';
 
 const ClassCard = ({oneClass}) => {
   const {user} = useContext(AuthContext);
+  console.log(user);
     const {_id, className, photoURL, displayName, seats, price } = oneClass;
     const [cart, refetch] = useCart();
     const navigate = useNavigate();
     const location = useLocation();
 
     const handleAddToCart = oneClass => {
-      console.log(oneClass);
+      // console.log(oneClass);
 
       if (user && user.email) {
-        const cartItem = { CourseId:_id, className, photoURL, displayName, seats, price }
+        const cartItem = { CourseId:_id, className, photoURL, displayName, seats, price, UserEmail: user.email }
         // console.log(user.email);
         // console.log(cartItem);
         fetch("http://localhost:5000/carts", {
@@ -27,7 +28,7 @@ const ClassCard = ({oneClass}) => {
         })
           .then((res) => res.json())
           .then((data) => {
-            console.log(data);
+            // console.log(data);
             if (data.insertedId) {
               //refetch(); //refetch for update the number of cart
               Swal.fire({
