@@ -64,6 +64,7 @@ const Signup = () => {
     });
     // Perform registration logic here
   };
+  const passwordRegex = /^(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.{6,})/;
 
   return (
     <div className="max-w-screen-xl mx-auto bg-[#e2e2e281]">
@@ -111,6 +112,11 @@ const Signup = () => {
           </div>
 
           {/* form service and address row */}
+          <div className="text-red-500 text-center text-xl ">
+          {errors.password && (
+                  <>Password should be at least 6 characters long, contain one special character, and one uppercase letter</>
+                )}
+          </div>
 
           <div className="md:flex mb-8">
             <div className="form-control lg:mr-4 md:w-1/2">
@@ -122,12 +128,17 @@ const Signup = () => {
                   className="input input-bordered w-full"
                   placeholder="Password"
                   type="password"
-                  {...register("password", { required: true, minLength: 6 })}
+                  {...register("password", {
+                     required: true,
+                     minLength: 6 ,
+                     pattern: {
+                      value: passwordRegex,
+                      message: 'Password should be at least 6 characters long, contain one special character, and one uppercase letter'
+                    }
+                    })}
                   onChange={(e) => setPassword(e.target.value)}
                 />
-                {errors.password && (
-                  <span>Password must be at least 6 characters</span>
-                )}
+                
               </label>
             </div>
 
@@ -149,6 +160,7 @@ const Signup = () => {
               </label>
             </div>
           </div>
+          
           {/* form service and address row */}
 
           <div className="md:flex mb-8">

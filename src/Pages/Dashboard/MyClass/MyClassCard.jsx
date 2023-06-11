@@ -1,7 +1,7 @@
 import React from 'react';
 
 const MyClassCard = ({MyClass}) => {
-    const {_id, className, photoURL, displayName, seats, price } = MyClass;
+    const {_id, className, photoURL, displayName, seats, price, status } = MyClass;
     return (
       <div className="card card-compact m-2 bg-base-100 shadow-xl">
         <figure>
@@ -14,10 +14,14 @@ const MyClassCard = ({MyClass}) => {
           <h2 className="card-title text-4xl font-bold">{className}</h2>
           <p className="text-2xl font-semibold ">{displayName}</p>
           <div className="card-actions justify-between mt-2">
-              <div>
-              {/* <p className="text-lg font-semibold mb-1">{seats} Seats available</p> */}
+              <div className=''>              
               <p className="uppercase text-lg font-semibold">$ {price}</p>
-              </div>
+          </div>
+          {status === 'approved'? <div className="btn btn-outline btn-success">{status}</div> :
+          <>{status === 'pending'?
+          <div className="btn btn-outline">{status}</div>:
+          <div className="btn btn-outline btn-error">{status}</div>}</>}
+              
             {/* <button className="btn bg-[#039477] hover:bg-[#3bb89f] text-white">Enroll Now</button> */}
           </div>
         </div>

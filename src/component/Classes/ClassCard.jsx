@@ -3,10 +3,16 @@ import { AuthContext } from '../../Provider/AuthProvider';
 import Swal from 'sweetalert2';
 import { useLocation, useNavigate } from 'react-router-dom';
 import useCart from '../../hooks/useCart';
+import useAdmin from '../../hooks/useAdmin';
+import useInstructor from '../../hooks/useInstructor';
 
 const ClassCard = ({oneClass}) => {
   const {user} = useContext(AuthContext);
   console.log(user);
+
+  const [isAdmin, isAdminLoading,] = useAdmin();
+  const [isInstructor, isInstructorLoading] = useInstructor();
+
     const {_id, className, photoURL, displayName, seats, price } = oneClass;
     const [cart, refetch] = useCart();
     const navigate = useNavigate();
@@ -71,7 +77,10 @@ const ClassCard = ({oneClass}) => {
               <p className="text-lg font-semibold mb-1">{seats} Seats available</p>
               <p className="uppercase text-lg font-semibold">$ {price}</p>
               </div>
-            <button onClick={() => handleAddToCart(oneClass)} className="btn bg-[#039477] hover:bg-[#3bb89f] text-white">Enroll Now</button>
+              {(isAdmin || isInstructor) ? <button onClick={() => handleAddToCart(oneClass)} className="btn bg-[#039477] hover:bg-[#3bb89f] text-white" disabled>Enroll Now</button>
+              : 
+              <button onClick={() => handleAddToCart(oneClass)} className="btn bg-[#039477] hover:bg-[#3bb89f] text-white" >Enroll Now</button>}
+            {/* <button onClick={() => handleAddToCart(oneClass)} className="btn bg-[#039477] hover:bg-[#3bb89f] text-white" >Enroll Now</button> */}
           </div>
         </div>
       </div>

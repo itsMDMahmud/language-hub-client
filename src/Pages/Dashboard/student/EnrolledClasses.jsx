@@ -25,39 +25,38 @@ const EnrolledClasses = () => {
     }, [url, navigate]);
   
     return (
-        <div className="my-20">
+        <div className="">
+          <div className='text-5xl lg:my-10 text-center'>History Page</div>
       
       <div className="overflow-x-auto w-full">
         <table className="table w-full text-center">
           {/* head */}
           <thead>
             <tr>
-              <th>Image</th>
-              <th>Name & category</th>
-              <th>Price & rating</th>
-              <th>seller</th>
+              <th>#</th>
+              <th>Email</th>
+              <th>Trx_Id</th>
+              <th>date & time</th>
+              <th>price & qty</th>
             </tr>
           </thead>
           <tbody>
             {enrolled.map((enrolledClass, index) => <tr>
-                    
-                    <td>
+                    <th>{index+1}</th>
+                    <th>
                       <div className="avatar">
-                        <div className="rounded w-40 mask mask-squircle">
-                          {enrolledClass?.img ? <img className='' src='' alt="img"/> : <img src="https://www.worldatlas.com/r/w960-q80/upload/31/d2/7f/shutterstock-578010718.jpg"/> }
-                          
-                        </div>
+                        <h2 className='text-xl'>{enrolledClass?.email}</h2>
                       </div>
-                    </td>
+                    </th>
                     <th> 
-                        <div className='text-3xl mb-3'>{enrolledClass?.date}</div> 
+                        
                         <div className='text-xl'>{enrolledClass?.transectionId}</div> </th>
                     <td className='text-center'>
-                        <div className='text-2xl mb-3'>{enrolledClass?.email}</div>    
+                        <div className='text-xl'>{enrolledClass?.date}</div>    
                         
                     </td>  
                     <td>
-                        <div className='text-2xl mb-3'>$ {enrolledClass?.price}</div>
+                        <div className='text-xl mb-3'>$ {enrolledClass?.price}</div>
                         <div className='text-xl'>{enrolledClass?.quantity}</div>
                     </td>
                     <th className=''>

@@ -4,6 +4,7 @@ import { Navigate, useLocation, useNavigate } from "react-router-dom";
 
 
 const SocialLogin = () => {
+  
   const location = useLocation();
   const navigate = useNavigate();
     const {googleSignIn} = useContext(AuthContext);
@@ -23,12 +24,12 @@ const SocialLogin = () => {
                 })
                     .then(res => res.json())
                     .then(() => {
-                        navigate(from, { replace: true } || '/');
-                        // navigate('/login', {state: {from: location}} || '/');
+                        navigate(from, { replace: true } || '/');                        
                     })
         })
         .catch(error => console.log(error))
     }
+    const from = location.state?.from?.pathname;
   return (
     <div>
       <div className="divider">OR</div>

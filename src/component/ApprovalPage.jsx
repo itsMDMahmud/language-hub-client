@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
+import useCart from '../hooks/useCart';
+import useAuth from '../hooks/useAuth';
+import useMenu from '../hooks/useMenu';
 
 const ApprovalPage = () => {
     const [approvalclasses, setApprovalclasses] = useState([]);
     // console.log(approvalclasses);
+    // const [cart, refetch] = useCart();
+    const [refetch] = useMenu();
 
     useEffect(() => {
         fetchData();
@@ -21,7 +26,7 @@ const ApprovalPage = () => {
       };
 
       const filterClasses = approvalclasses.filter( (filterClass) => filterClass.status === "pending" )
-      console.log(filterClasses);
+      // console.log(filterClasses);
 
       //-----------------------------------------------------------------------------------
 
@@ -39,6 +44,16 @@ const ApprovalPage = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data);
+                if (data.modifiedCount >0) {
+                  location.reload();
+                  Swal.fire({
+                    // position: 'top-end',
+                    icon: 'success',
+                    title: 'Course Approved',
+                    showConfirmButton: false,
+                    timer: 1500
+                  }); 
+                }
                 // setReload(prevReload => !prevReload);
             })
     }
@@ -61,7 +76,7 @@ const ApprovalPage = () => {
     <tbody>
     {filterClasses.map((MyClass, index) =>
     
-     <tr>        
+     <tr key={MyClass._id}>        
         <th>{index+1}</th>
         <td>
           <div className="flex items-center space-x-3">

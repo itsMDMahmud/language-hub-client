@@ -39,6 +39,8 @@ const Login = () => {
     setPasswordVisible((prevVisible) => !prevVisible);
   };
 
+  const passwordRegex = /^(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.{6,})/;
+
   return (
     <>
       <div className="hero min-h-screen bg-base-200">
@@ -86,17 +88,22 @@ const Login = () => {
                       {...register("password", {
                         required: true,
                         minLength: 6,
+                        pattern: {
+                          // value: passwordRegex,
+                          message: 'Password should be at least 6 characters long, contain one special character, and one uppercase letter'
+                        }
                       })}
                     />
                     <button className="absolute showhide" onClick={togglePasswordVisibility}>
                     {passwordVisible ? <AiFillEyeInvisible/> : <AiFillEye/>}
                     </button>
                     </div>
-                    {errors.password && (
-                      <span>Valid Password</span>
-                    )}
+                    
                   </label>
                 </div>
+                <h2 className="text-red-500">{errors.password && (
+                      <>Password should be at least 6 characters long, contain one special character, and one uppercase letter</>
+                    )}</h2>
 
                 <div className="form-control mt-6">
                   <input

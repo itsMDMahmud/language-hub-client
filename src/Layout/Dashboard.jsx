@@ -31,7 +31,7 @@ const Dashboard = () => {
           {/* Sidebar content here */}
           <li> <Link className="dashnav" to='/'>Home</Link> </li>
           <li> <Link className="dashnav" to='/instructors'>Instructors</Link> </li>
-          <li> <Link className="dashnav" to="/classes" > Classes </Link> </li>
+          <li> <Link className="dashnav" to="/classes" > Courses </Link> </li>
           <li> <Link className="dashnav" to="/dashboard/commonpage" >Dashboard</Link></li>
           {/*<li> <Link className=" dashnav" to='/dashboard/allusers'>Users</Link> </li>
           <li> <Link className=" dashnav" to='/dashboard/cart'>Cart</Link> </li>

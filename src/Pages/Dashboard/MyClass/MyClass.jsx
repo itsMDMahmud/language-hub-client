@@ -29,12 +29,12 @@ const MyClass = () => {
       };
 
       // const allAdmin = alluser.filter( (admin) => admin.role === "admin" );
-      const filterClasses = myClasses.filter( (filterClass) => filterClass.status === "approved" )
+      // const filterClasses = myClasses.filter( (filterClass) => filterClass.status === "approved" )
 
     return (
         <div className="max-w-screen-xl grid md:grid-cols-3 mx-auto gap-4">
       
-      {filterClasses.map(MyClass => <MyClassCard
+      {myClasses.map(MyClass => <MyClassCard
         key={MyClass._id}
         MyClass={MyClass}
       ></MyClassCard> )}

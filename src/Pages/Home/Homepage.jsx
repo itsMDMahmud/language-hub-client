@@ -2,6 +2,7 @@ import React  from "react";
 import Carousell from "./Carousell";
 import Instructors from "../../component/Instructors/Instructors";
 import Hero from "./Hero";
+import SixInstructors from "../../component/Instructors/SixInstructors";
 
 const Homepage = () => {
   
@@ -17,7 +18,7 @@ const Homepage = () => {
         <Carousell />
       </div>
       <div className="my-5">
-        <Instructors/>
+        <SixInstructors/>
       </div>
     </div>
   );

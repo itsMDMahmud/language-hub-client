@@ -15,7 +15,7 @@ const SingInstructor = ({instructor}) => {
         <p className="text-xl">{email}</p>
         <div className="card-actions justify-end">
             <p className="uppercase">{role}</p>
-          <button className="btn bg-[#039477] hover:bg-[#3bb89f] text-white">Profile</button>
+          {/* <button className="btn bg-[#039477] hover:bg-[#3bb89f] text-white">Profile</button> */}
         </div>
       </div>
     </div>

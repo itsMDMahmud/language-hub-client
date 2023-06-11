@@ -34,7 +34,7 @@ const Navbar = () => {
           className="text-xl font-semibold NavLink active:text-[#039477]"
           to="/classes"
         >
-          Classes
+          Courses
         </Link>
       </li>
       <li>
