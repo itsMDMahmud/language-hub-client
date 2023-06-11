@@ -75,11 +75,11 @@ const CheakOut = ({ price, cart }) => {
            transectionId: paymentIntent.id,
            price,
            date: new Date(),
-           quantity: cart.length,
-           cartItems: cart.map(item => item._id),
-           menuItems: cart.map(item => item.menuItemId),
-           status: 'service pending',
-           itemNames: cart.map(item => item.name)
+           quantity: 1,
+           cartItems: cart._id,
+           menuItems: cart.menuItemId,
+          //  status: 'service pending',
+           itemNames: cart.name,
         }
         axiosSecure.post('/payments', payment)
         .then(res => {

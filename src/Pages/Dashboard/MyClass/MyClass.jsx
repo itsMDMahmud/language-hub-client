@@ -5,6 +5,7 @@ import MyClassCard from './MyClassCard';
 const MyClass = () => {
     const [myClasses, setMyclasses] = useState([]);
     const { user } = useContext(AuthContext);
+    
 
     // useEffect(() => {
     //     fetch(`http://localhost:5000/classes?email=${user.email}`) // Replace API_URL with the actual API endpoint
@@ -27,10 +28,13 @@ const MyClass = () => {
         }
       };
 
+      // const allAdmin = alluser.filter( (admin) => admin.role === "admin" );
+      const filterClasses = myClasses.filter( (filterClass) => filterClass.status === "approved" )
+
     return (
         <div className="max-w-screen-xl grid md:grid-cols-3 mx-auto gap-4">
       
-      {myClasses.map(MyClass => <MyClassCard
+      {filterClasses.map(MyClass => <MyClassCard
         key={MyClass._id}
         MyClass={MyClass}
       ></MyClassCard> )}

@@ -63,7 +63,7 @@ const StudentCourseCard = ({ course, enrolledCourses, setEnrolledCourses }) => {
           </button>
 
           <div className="">
-            <Link to='/dashboard/payment'> <button className="btn btn-error text-white">
+            <Link to={`/dashboard/payment/${_id}`}> <button className="btn btn-error text-white">
               Pay Now</button></Link>  
 
             {/* <button onClick={() => setIsModalOpen(true)} className="btn btn-error text-white"
@@ -109,6 +109,6 @@ export default StudentCourseCard;
 // <button onClick={() => setIsModalOpen(false)} className="btn">Close</button>
 
 // onClick={() => { 
-//   handleClick2(); 
+//   () => setIsModalOpen(true); 
 //   notify2();
 //  }}

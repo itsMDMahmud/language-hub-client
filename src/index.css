@@ -20,7 +20,11 @@
 .herosecion{
     background-image: url("https://wallpapercave.com/wp/wp1966398.png");
 }
-
+.showhide{
+    
+    right: 50px;
+    
+}
 
 @media (max-width: 576px) {
     .main-logo{

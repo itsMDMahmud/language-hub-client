@@ -39,18 +39,21 @@ const Dashboard = () => {
           <li> <Link className=" dashnav " to='/dashboard/myclass'>My classes</Link> </li> */}
 
           {isAdmin  ?
-          <li> <Link className=" dashnav" to='/dashboard/allusers'>Users</Link> </li> 
+          <>
+          <li> <Link className=" dashnav" to='/dashboard/allusers'>Users</Link> </li>
+          <li> <Link className=" dashnav" to='/dashboard/approvalPage'>Approval Page</Link> </li>
+          </>
           :
           <>
           {isInstructor  ?
           <>
-          <li> <Link className=" dashnav " to='/dashboard/addclass'>Add Class</Link> </li>
-          <li> <Link className=" dashnav " to='/dashboard/myclass'>My classes</Link> </li>
+          <li> <Link className=" dashnav " to='/dashboard/addclass'>Add Course</Link> </li>
+          <li> <Link className=" dashnav " to='/dashboard/myclass'>My Courses</Link> </li>
           </> :
           <>
           <li><Link className="dashnav" to='/dashboard/enrolled'>Enrolled Classes</Link></li>
           <li><Link className="dashnav" to='/dashboard/history'>History</Link></li>
-          <li><Link className="dashnav" to='/dashboard/payment'>Payment</Link></li>
+          {/* <li><Link className="dashnav" to='/dashboard/payment'>Payment</Link></li> */}
           </>
           }
           </>

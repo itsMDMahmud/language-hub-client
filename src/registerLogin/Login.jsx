@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import SocialLogin from "./SocialLogin";
@@ -16,6 +16,13 @@ const Login = () => {
   };
   
   //navigate('/login', {state: {from: location}});
+
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  const [password, setPassword] = useState('');
+
+  const togglePasswordVisibility = () => {
+    setPasswordVisible((prevVisible) => !prevVisible);
+  };
 
   return (
     <>
@@ -37,7 +44,7 @@ const Login = () => {
                   </label>
                   <label className="input-group">
                     <input
-                      className="input input-bordered w-full"
+                      className="input input-bordered w-full"                      
                       placeholder="Email"
                       {...register("email", {
                         required: true,
@@ -45,7 +52,7 @@ const Login = () => {
                       })}
                     />
                     {errors.email && (
-                      <span>Please enter a valid email address</span>
+                      <span>Enter your email</span>
                     )}
                   </label>
                 </div>
@@ -55,16 +62,23 @@ const Login = () => {
                     <span className="label-text">Password</span>
                   </label>
                   <label className="input-group">
+                    <div className="w-full flex items-center ">
                     <input 
                       className="input input-bordered w-full"
+                      type={passwordVisible ? 'text' : 'password'}
+                      onChange={(e) => setPassword(e.target.value)}
                       placeholder="Password"
                       {...register("password", {
                         required: true,
                         minLength: 6,
                       })}
                     />
+                    <button className="absolute showhide" onClick={togglePasswordVisibility}>
+                    {passwordVisible ? 'Hide' : 'Show'}
+                    </button>
+                    </div>
                     {errors.password && (
-                      <span>Password must be at least 6 characters</span>
+                      <span>Valid Password</span>
                     )}
                   </label>
                 </div>

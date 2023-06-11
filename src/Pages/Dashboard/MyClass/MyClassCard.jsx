@@ -15,10 +15,10 @@ const MyClassCard = ({MyClass}) => {
           <p className="text-2xl font-semibold ">{displayName}</p>
           <div className="card-actions justify-between mt-2">
               <div>
-              <p className="text-lg font-semibold mb-1">{seats} Seats available</p>
+              {/* <p className="text-lg font-semibold mb-1">{seats} Seats available</p> */}
               <p className="uppercase text-lg font-semibold">$ {price}</p>
               </div>
-            <button className="btn bg-[#039477] hover:bg-[#3bb89f] text-white">Enroll Now</button>
+            {/* <button className="btn bg-[#039477] hover:bg-[#3bb89f] text-white">Enroll Now</button> */}
           </div>
         </div>
       </div>

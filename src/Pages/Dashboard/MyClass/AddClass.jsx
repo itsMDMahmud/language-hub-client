@@ -23,6 +23,8 @@ const AddClass = () => {
     const formData = new FormData();
     formData.append("image", image);
 
+    const status = 'pending';
+
     const url = `https://api.imgbb.com/1/upload?key=${
       import.meta.env.VITE_image_upload_token
     }`;
@@ -36,7 +38,7 @@ const AddClass = () => {
       .then((imageData) => {
         if (imageData.success) {
           const imgURL = imageData.data.display_url;
-          const addClass = {className, photoURL:imgURL , displayName, email, seats, price: parseFloat(price)};
+          const addClass = {className, photoURL:imgURL , displayName, email, seats, price: parseFloat(price), status};
           console.log(addClass);
           axiosSecure.post('http://localhost:5000/classes', addClass)
           .then(data => {
@@ -58,7 +60,7 @@ const AddClass = () => {
 
   return (
     <div className="max-w-screen-xl mx-auto bg-[#e2e2e281]">
-      <h2 className="text-5xl py-10 font-semibold text-center">Add a class</h2>
+      <h2 className="text-5xl py-10 font-semibold text-center">Create A Course</h2>
 
       {/*----------------add service form-------------------*/}
 
@@ -182,7 +184,7 @@ const AddClass = () => {
           <input
             className="btn btn-block my-10 text-white bg-[#081b29] hover:bg-[#081b29c5]"
             type="submit"
-            value="add service"
+            value="add Course"
           />
         </form>
       </div>

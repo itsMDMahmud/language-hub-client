@@ -17,6 +17,7 @@ import EnrolledClasses from "../Pages/Dashboard/student/EnrolledClasses";
 import History from "../Pages/Dashboard/student/History";
 import Payment from "../Pages/Dashboard/student/Payment";
 import AdminRoute from "./AdminRoute";
+import ApprovalPage from "../component/ApprovalPage";
 
 export const router = createBrowserRouter([
   {
@@ -63,8 +64,9 @@ export const router = createBrowserRouter([
         element: <EnrolledClasses/>
       },
       {
-        path: 'payment',
-        element: <Payment/>
+        path: '/dashboard/payment/:_id',
+        element: <Payment/>,
+
       },
       {
         path: 'history',
@@ -77,6 +79,10 @@ export const router = createBrowserRouter([
       {
         path: 'allusers',
         element: <AdminRoute><AllUsers/></AdminRoute>
+      },
+      {
+        path: 'approvalPage',
+        element: <AdminRoute><ApprovalPage/></AdminRoute>
       },
       {
         path: 'cart',
