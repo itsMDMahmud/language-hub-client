@@ -3,15 +3,30 @@ import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import SocialLogin from "./SocialLogin";
 import { AuthContext } from "../Provider/AuthProvider";
+import { AiFillEye, AiFillEyeInvisible,  } from 'react-icons/ai';
+import Swal from "sweetalert2";
+
 
 const Login = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { register, handleSubmit, formState: { errors } } = useForm();
   const {signIn} = useContext(AuthContext);
+  const from = location.state?.from?.pathname || "/";
 
   const onSubmit = (data) => {
-    signIn(data.email, data.password);
+    signIn(data.email, data.password).then((result) => {
+      const user = result.user;
+      console.log(user);
+      Swal.fire({
+        // position: 'top-end',
+        icon: 'success',
+        title: 'Login successful',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      navigate(from, {replace: true});
+    })
     // Perform login logic here
   };
   
@@ -74,7 +89,7 @@ const Login = () => {
                       })}
                     />
                     <button className="absolute showhide" onClick={togglePasswordVisibility}>
-                    {passwordVisible ? 'Hide' : 'Show'}
+                    {passwordVisible ? <AiFillEyeInvisible/> : <AiFillEye/>}
                     </button>
                     </div>
                     {errors.password && (
