@@ -17,3 +17,14 @@
 * this is very dynamic and beautiful user interface to your user experience.
 ## thanks for reading is instruction
 
+package list:
+react-stripe-js
+react-query
+axios
+firebase
+react-hook-form
+react-icon
+react-responsive-carousel
+sweetalert2
+daisyui
+tailwindcss
