@@ -12,13 +12,13 @@ const UserCart = () => {
     const [alluser] = useMenu();
     // const [axiosSecure] = useAxiosSecure();
     const { data: users = [], refetch } = useQuery(["users"], async () => {
-      const res = await fetch("http://localhost:5000/users");
+      const res = await fetch("https://language-hub-server.vercel.app/users");
       return res.data;
     });
 
     // const handleMakeAdmin = user => {
   
-    //   fetch(`http://localhost:5000/users/admin/${user._id}`, {
+    //   fetch(`https://language-hub-server.vercel.app/users/admin/${user._id}`, {
     //       method: 'PATCH'        
     //   })
     //   .then(res => res.json())

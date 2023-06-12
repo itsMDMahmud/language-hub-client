@@ -17,7 +17,7 @@ const ApprovalPage = () => {
     
       const fetchData = async () => {
         try {
-          const url = 'http://localhost:5000/classes';
+          const url = 'https://language-hub-server.vercel.app/classes';
           const response = await fetch(url);
           const data = await response.json();
           setApprovalclasses(data);
@@ -35,7 +35,7 @@ const ApprovalPage = () => {
         const updateStatus = { status: status }
         console.log(updateStatus);
 
-        fetch(`http://localhost:5000/classes/${_id}`, {
+        fetch(`https://language-hub-server.vercel.app/classes/${_id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json'

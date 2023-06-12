@@ -25,7 +25,7 @@ const ClassCard = ({oneClass, enrolled}) => {
         const cartItem = { CourseId:_id, className, photoURL, displayName, seats, price, UserEmail: user.email }
         // console.log(user.email);
         // console.log(cartItem);
-        fetch("http://localhost:5000/carts", {
+        fetch("https://language-hub-server.vercel.app/carts", {
           method: 'POST',
           headers: {
             'content-type': 'application/json'

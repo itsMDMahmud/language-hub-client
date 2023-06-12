@@ -9,7 +9,7 @@ const EnrolledClasses = () => {
     const navigate = useNavigate();
   //   console.log(histories);
   
-    const url = `http://localhost:5000/payments?email=${user?.email}`;
+    const url = `https://language-hub-server.vercel.app/payments?email=${user?.email}`;
     useEffect(() => {
       fetch(url)
         .then((res) => res.json())

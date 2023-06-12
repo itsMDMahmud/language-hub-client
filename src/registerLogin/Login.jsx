@@ -89,7 +89,7 @@ const Login = () => {
                         required: true,
                         minLength: 6,
                         pattern: {
-                          // value: passwordRegex,
+                          value: passwordRegex,
                           message: 'Password should be at least 6 characters long, contain one special character, and one uppercase letter'
                         }
                       })}
@@ -116,7 +116,7 @@ const Login = () => {
               </form>
               <p className="text-red-500 font-semibold"></p>
               <p>
-                New to Mohite Tex? please
+                New to Language hub? please
                 <Link className="text-orange-600 font-semibold" to="/signup">
                   {" "}
                   Sign Up

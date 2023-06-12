@@ -40,7 +40,7 @@ const AddClass = () => {
           const imgURL = imageData.data.display_url;
           const addClass = {className, photoURL:imgURL , displayName, email, seats, price: parseFloat(price), status};
           console.log(addClass);
-          axiosSecure.post('http://localhost:5000/classes', addClass)
+          axiosSecure.post('https://language-hub-server.vercel.app/classes', addClass)
           .then(data => {
               console.log('after posting new menu item', data.data);
               if (data.data.insertedId) {

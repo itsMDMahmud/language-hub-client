@@ -8,7 +8,7 @@ const MyClass = () => {
     
 
     // useEffect(() => {
-    //     fetch(`http://localhost:5000/classes?email=${user.email}`) // Replace API_URL with the actual API endpoint
+    //     fetch(`https://language-hub-server.vercel.app/classes?email=${user.email}`) // Replace API_URL with the actual API endpoint
     //   .then(res => res.json())
     //   .then(data => setMyclasses(data))
     //   }, []);
@@ -19,7 +19,7 @@ const MyClass = () => {
     
       const fetchData = async () => {
         try {
-          const url = `http://localhost:5000/classes?email=${user?.email}`;
+          const url = `https://language-hub-server.vercel.app/classes?email=${user?.email}`;
           const response = await fetch(url);
           const data = await response.json();
           setMyclasses(data);

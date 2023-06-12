@@ -7,7 +7,7 @@ const Classes = () => {
     const [allClasses, setAllClasses] = useState([]);
 
     useEffect(() => {
-        fetch("http://localhost:5000/classes")
+        fetch("https://language-hub-server.vercel.app/classes")
           .then((res) => res.json())
           .then((data) => setAllClasses(data));
       }, []);
@@ -26,7 +26,7 @@ const Classes = () => {
        const navigate = useNavigate();
      //   console.log(histories);
      
-       const url = `http://localhost:5000/payments?email=${user?.email}`;
+       const url = `https://language-hub-server.vercel.app/payments?email=${user?.email}`;
        useEffect(() => {
          fetch(url)
            .then((res) => res.json())

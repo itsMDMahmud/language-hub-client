@@ -38,7 +38,7 @@ const Signup = () => {
             role: 'user',
           };
           console.log(saveUser);
-          fetch('http://localhost:5000/users',{
+          fetch('https://language-hub-server.vercel.app/users',{
             method: 'POST',
             headers: {
               'content-type': 'application/json'
