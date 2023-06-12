@@ -6,9 +6,9 @@ import useCart from '../../hooks/useCart';
 import useAdmin from '../../hooks/useAdmin';
 import useInstructor from '../../hooks/useInstructor';
 
-const ClassCard = ({oneClass}) => {
+const ClassCard = ({oneClass, enrolled}) => {
   const {user} = useContext(AuthContext);
-  // console.log(user);
+  // console.log(enrolled);
 
   const [isAdmin, isAdminLoading,] = useAdmin();
   const [isInstructor, isInstructorLoading] = useInstructor();
@@ -59,10 +59,20 @@ const ClassCard = ({oneClass}) => {
           }
         });
       }
-
     }
+    // console.log(enrolled);
+
+    const oneEnrdcls = enrolled.filter((enldcls) => enldcls.className == oneClass.className )
+    // const oneEnrdlnt = 
+    // console.log(oneEnrdcls.length);
+    const lengtho = oneEnrdcls.length == oneClass.seats;
+    // console.log(enldcls.length);
+    
+
     return (
-      <div className="card card-compact m-2 bg-base-100 shadow-xl">
+      
+      <div className={lengtho? "card card-compact m-2 bg-red-500  shadow-xl" : 'card card-compact m-2 bg-base-100  shadow-xl'}>
+      {/* <div className="card card-compact m-2 bg-base-100  shadow-xl"> */}
         <figure>
           <img
             src={photoURL}
@@ -74,10 +84,10 @@ const ClassCard = ({oneClass}) => {
           <p className="text-2xl font-semibold ">{displayName}</p>
           <div className="card-actions justify-between mt-2">
               <div>
-              <p className="text-lg font-semibold mb-1">{seats} Seats available</p>
+              <p className="text-lg font-semibold mb-1">{seats - oneEnrdcls.length} Seats available</p>
               <p className="uppercase text-lg font-semibold">$ {price}</p>
               </div>
-              {(isAdmin || isInstructor) ? <button onClick={() => handleAddToCart(oneClass)} className="btn bg-[#039477] hover:bg-[#3bb89f] text-white" disabled>Enroll Now</button>
+              {(isAdmin || isInstructor || lengtho) ? <button onClick={() => handleAddToCart(oneClass)} className="btn bg-[#039477] hover:bg-[#3bb89f] text-white" disabled>Enroll Now</button>
               : 
               <button onClick={() => handleAddToCart(oneClass)} className="btn bg-[#039477] hover:bg-[#3bb89f] text-white" >Enroll Now</button>}
             {/* <button onClick={() => handleAddToCart(oneClass)} className="btn bg-[#039477] hover:bg-[#3bb89f] text-white" >Enroll Now</button> */}

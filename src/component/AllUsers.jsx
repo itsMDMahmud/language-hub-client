@@ -7,7 +7,6 @@ import { FaTrashAlt, FaUserShield } from "react-icons/fa";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 import useAdmin from "../hooks/useAdmin";
-// import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const AllUsers = () => {
   const [ refetch] = useAdmin();
@@ -26,14 +25,14 @@ const AllUsers = () => {
       .then((data) => {
         console.log(data);
         if (data.modifiedCount) {
-          refetch();
-          window.location.reload(false);
+          // refetch();
+          // window.location.reload(false);
           Swal.fire({
             icon: "success",
             title: `${user.displayName} is an instructor now!`,
             showConfirmButton: false,
             timer: 1500,
-          });
+          }) && location.reload();
         }
       });
   };
@@ -45,14 +44,14 @@ const AllUsers = () => {
       .then((data) => {
         console.log(data);
         if (data.modifiedCount) {
-          refetch();
-          window.location.reload(false);
+          // refetch();
+          // window.location.reload(false);
           Swal.fire({
             icon: "success",
             title: `${user.displayName} is an Admin now!`,
             showConfirmButton: false,
             timer: 1500,
-          });
+          })&& location.reload();
         }
       });
   };

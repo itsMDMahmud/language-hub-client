@@ -78,9 +78,10 @@ const CheakOut = ({ price, cart, item }) => {
            transectionId: paymentIntent.id,
            price: item?.price,
            date: new Date(),
+           seats: item.seats,
            quantity: 1,
-           _id: item._id,
-           courseId: item.CourseId,
+          //  _id: item._id,
+          //  courseId: item.CourseId,
           //  status: 'service pending',
           //  itemName: cart.name,           
         }

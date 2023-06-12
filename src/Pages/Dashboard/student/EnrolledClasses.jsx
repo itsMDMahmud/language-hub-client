@@ -23,7 +23,7 @@ const EnrolledClasses = () => {
           } 
         });
     }, [url, navigate]);
-    console.log(enrolled);
+    // console.log(enrolled);
   
     return (
         <div className="">
