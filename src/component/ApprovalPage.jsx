@@ -109,7 +109,7 @@ const ApprovalPage = () => {
           <button className="btn bg-[#081b29] text-white btn-sm" disabled={myClass?.feedback}> Feedback</button>
 
            {/* delete button  */}
-          <button onClick={() => handleUpdateStatus('denied', myClass._id)} disabled={ myClass?.status === 'denied'} className="btn btn-error btn-sm">Delete</button>
+          <button onClick={() => handleUpdateStatus('denied', myClass._id)} disabled={ myClass?.status === 'denied'} className="btn btn-error btn-sm">Deny</button>
         </th>
       </tr>
     

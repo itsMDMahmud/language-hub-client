@@ -6,14 +6,17 @@ const History = () => {
     const { user } = useContext(AuthContext);
   const [histories, setHistories] = useState([]);
   const navigate = useNavigate();
-//   console.log(histories);
+  // console.log(user);
 
   const url = `http://localhost:5000/payments?email=${user?.email}`;
   useEffect(() => {
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
+        // jsonData.sort((a, b) => new Date(b.date) - new Date(a.date));
+
         if (!data.error) {
+          data.sort((a, b) => new Date(b.date) - new Date(a.date));
           setHistories(data)
         }
         else{
@@ -22,37 +25,44 @@ const History = () => {
         } 
       });
   }, [url, navigate]);
-
+// console.log(histories);
 
     return (
-        <div>
-            <div className='text-5xl mt-5 text-center'>History Page</div>
+        <div className=''>
+            <div className='text-5xl mt-5 text-center'>Payment {histories.length === 1? 'history': 'histories'}</div>
             <div className="overflow-x-auto mt-10">
-  <table className="table text-center">
+  <table className="table ">
     <thead className='text-2xl'>
       <tr>
         <th>#</th>
-        <th>Email</th>
-        <th>Trx_ID</th>
-        <th>Course Qty</th>
+        <th>Name & Email</th>
+        <th>Trx_ID & date</th>
+        {/* <th></th> */}
         <th>Price</th>
       </tr>
     </thead>    
-    <tbody className='text-2xl'>
+    <tbody className='text-2xl '>
     {
-        histories.map((history, index )=> <tr key={history._id}>
-            <th>{index+1}</th>
+        histories.map((history, index )=> <tr className='' key={history._id}>
+            <th>{index+1}.</th>
             <td>
               <div className="flex items-center space-x-3">
                 
                 <div>
-                  <div className="font-bold">{history.email}</div>
+                  
+                  <div className="font-bold">{user.displayName}</div>
+                  <div className="font-semibold">{history.email}</div>
                 </div>
               </div>
             </td>
-            <td>{history.transectionId}</td>
-            <td>{history.quantity}</td>
-            <th>$ {history.price}</th>
+            <td>
+              <div className='flex'> {history?.transectionId}</div>
+              <div className='flex'> {history?.date}</div>
+            </td>
+            {/* <td>{history.quantity}</td> */}
+            <td><div className='font-bold'>$ {history.price}</div>
+            <div>Qty {history.quantity}</div>
+            </td>
           </tr>)
     }
        

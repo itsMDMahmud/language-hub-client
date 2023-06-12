@@ -19,13 +19,13 @@ const Payment =  () => {
 
 
     const item =  cart?.find( (singlecourse) => singlecourse?._id === _id );
-    console.log(item);
+    // console.log(item);
     return (
         <div>
             {/* <h2 className="text-3xl ">Total Item: {item.length}</h2> */}
         {/* <h2 className="text-3xl ">Total Amount: ${total}</h2> */}
             <Elements stripe={stripePromise}>
-                <CheakOut cart={cart} price={item?.price} />
+                <CheakOut item={item} cart={cart} price={item?.price} />
             </Elements>
         </div>
     );

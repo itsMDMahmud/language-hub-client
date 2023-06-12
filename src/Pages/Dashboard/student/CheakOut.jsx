@@ -5,7 +5,7 @@ import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 
-const CheakOut = ({ price, cart }) => {
+const CheakOut = ({ price, cart, item }) => {
   const {user} = useAuth();
   const stripe = useStripe();
   const elements = useElements();
@@ -14,6 +14,7 @@ const CheakOut = ({ price, cart }) => {
   const [clientSecret, setClientSecret] = useState();
   const [processing, setProcessing] = useState(false);
   const [transectionId, setTransectionId] = useState();
+  // console.log(item);
 
   useEffect(() => {
     if (price > 0) {
@@ -72,15 +73,18 @@ const CheakOut = ({ price, cart }) => {
   //       //save payment info to the server 
         const payment = {
            email: user?.email,
+           photoURL: item?.photoURL,
+           className: item?.className,
            transectionId: paymentIntent.id,
-           price,
+           price: item?.price,
            date: new Date(),
            quantity: 1,
-           cartItems: cart._id,
-           menuItems: cart.menuItemId,
+           _id: item._id,
+           courseId: item.CourseId,
           //  status: 'service pending',
-           itemNames: cart.name,
+          //  itemName: cart.name,           
         }
+        // console.log(itemName);
         axiosSecure.post('/payments', payment)
         .then(res => {
           console.log(res.data);
@@ -100,8 +104,10 @@ const CheakOut = ({ price, cart }) => {
 
   return (
     <>
-      <div >
-      <form className=" mt-8 input input-bordered" 
+      <div className="w-2/3 mx-auto mt-10" >
+      <div className="w-2/3 mx-auto text-center">{cardError && <p className="text-red-600">{cardError}</p>}
+      {transectionId && <p className="text-green-600">Transection complete with: {transectionId}</p>}</div>
+      <form className=" mt-8  input input-bordered" 
       onSubmit={handleSubmit}
       >
         <CardElement
@@ -123,8 +129,7 @@ const CheakOut = ({ price, cart }) => {
         <button className="btn btn-sm btn-success mt-10 " type="submit" disabled={!stripe || !clientSecret || processing } > Pay </button>
       </form>
       </div>
-      {cardError && <p className="text-red-600">{cardError}</p>}
-      {transectionId && <p className="text-green-600">Transection complete with: {transectionId}</p>}
+      
     </>
   );
 };

@@ -23,10 +23,11 @@ const EnrolledClasses = () => {
           } 
         });
     }, [url, navigate]);
+    console.log(enrolled);
   
     return (
         <div className="">
-          <div className='text-5xl lg:my-10 text-center'>History Page</div>
+          <div className='text-5xl lg:my-10 text-center'>Enrolled {enrolled.length === 1? 'course': 'courses'}</div>
       
       <div className="overflow-x-auto w-full">
         <table className="table w-full text-center">
@@ -34,36 +35,35 @@ const EnrolledClasses = () => {
           <thead>
             <tr>
               <th>#</th>
+              <th>Course name</th>
+              <th>Trx_Id & date</th>
               <th>Email</th>
-              <th>Trx_Id</th>
-              <th>date & time</th>
-              <th>price & qty</th>
+              <th>Price</th>
             </tr>
           </thead>
-          <tbody>
-            {enrolled.map((enrolledClass, index) => <tr>
+          <tbody className='text-lg'>
+            {enrolled.map((eClass, index) => <tr key={eClass._id}>
                     <th>{index+1}</th>
-                    <th>
-                      <div className="avatar">
-                        <h2 className='text-xl'>{enrolledClass?.email}</h2>
-                      </div>
-                    </th>
-                    <th> 
-                        
-                        <div className='text-xl'>{enrolledClass?.transectionId}</div> </th>
-                    <td className='text-center'>
-                        <div className='text-xl'>{enrolledClass?.date}</div>    
-                        
-                    </td>  
                     <td>
-                        <div className='text-xl mb-3'>$ {enrolledClass?.price}</div>
-                        <div className='text-xl'>{enrolledClass?.quantity}</div>
-                    </td>
-                    <th className=''>
-                        
-                        
-                         
-                    </th>
+          <div className="flex items-center space-x-3">
+            <div className="avatar">
+              <div className="mask mask-squircle w-20 h-20">
+                <img src={eClass?.photoURL} />
+              </div>
+            </div>
+            <div>
+              <div className="font-bold">{eClass?.className}</div>
+              
+            </div>
+          </div>
+        </td>
+        <td>{eClass?.transectionId}<br/>
+          <span className="badge badge-ghost badge-sm">{eClass?.date}</span>
+        </td>
+        <td>{eClass?.email}</td>
+        <th>
+          <p className="">$ {eClass?.price}</p>
+        </th>
                   </tr>)}
           </tbody>
         </table>
