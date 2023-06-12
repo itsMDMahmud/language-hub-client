@@ -8,7 +8,7 @@ import useInstructor from '../../hooks/useInstructor';
 
 const ClassCard = ({oneClass}) => {
   const {user} = useContext(AuthContext);
-  console.log(user);
+  // console.log(user);
 
   const [isAdmin, isAdminLoading,] = useAdmin();
   const [isInstructor, isInstructorLoading] = useInstructor();

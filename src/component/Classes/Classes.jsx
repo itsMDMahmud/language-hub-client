@@ -10,10 +10,13 @@ const Classes = () => {
           .then((data) => setAllClasses(data));
       }, []);
 
+      const filterClasses = allClasses.filter( (filterClass) => filterClass.status === "approved" )
+      // console.log(filterClasses);
+
     return (
         <div className="max-w-screen-xl grid md:grid-cols-3 mx-auto gap-4">
       
-      {allClasses.map(oneClass => <ClassCard
+      {filterClasses.map(oneClass => <ClassCard
         key={oneClass._id}
         oneClass={oneClass}
       ></ClassCard> )}

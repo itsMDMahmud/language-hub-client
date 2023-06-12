@@ -4,6 +4,7 @@ import useCart from '../hooks/useCart';
 import useAuth from '../hooks/useAuth';
 import useMenu from '../hooks/useMenu';
 
+
 const ApprovalPage = () => {
     const [approvalclasses, setApprovalclasses] = useState([]);
     // console.log(approvalclasses);
@@ -25,7 +26,7 @@ const ApprovalPage = () => {
         }
       };
 
-      const filterClasses = approvalclasses.filter( (filterClass) => filterClass.status === "pending" )
+      // const filterClasses = approvalclasses.filter( (filterClass) => filterClass.status === "pending" )
       // console.log(filterClasses);
 
       //-----------------------------------------------------------------------------------
@@ -45,18 +46,21 @@ const ApprovalPage = () => {
             .then(data => {
                 console.log(data);
                 if (data.modifiedCount >0) {
-                  location.reload();
+                  
                   Swal.fire({
                     // position: 'top-end',
                     icon: 'success',
-                    title: 'Course Approved',
+                    title: `Course ${status}`,
                     showConfirmButton: false,
                     timer: 1500
-                  }); 
+                  }) && location.reload();
                 }
                 // setReload(prevReload => !prevReload);
             })
     }
+
+    //------------------modal---------------------modal----------------modal-----------------
+   
 
       
     return (
@@ -74,36 +78,47 @@ const ApprovalPage = () => {
       </tr>
     </thead>
     <tbody>
-    {filterClasses.map((MyClass, index) =>
-    
-     <tr key={MyClass._id}>        
-        <th>{index+1}</th>
+    {approvalclasses.map((myClass, index) => <tr key={myClass._id}>        
+        <th className='text-lg'>{index+1}</th>
         <td>
           <div className="flex items-center space-x-3">
             <div className="avatar">
-              <div className="mask mask-squircle w-12 h-12">
-                <img src={MyClass?.photoURL} />
+              <div className="mask mask-squircle w-28 h-28">
+                <img src={ myClass?.photoURL} />
               </div>
             </div>
             <div>
-              <div className="font-bold">{MyClass?.className}</div>
-              <div className="text-sm">$ {MyClass?.price}</div>
+              <div className="text-xl font-bold">{ myClass?.className}</div>
+              <div className="text-lg">$ { myClass?.price}</div>
             </div>
           </div>
         </td>
-        <td>{MyClass?.displayName}<br/>
-          <span className="badge badge-ghost badge-sm">{MyClass?.email}</span>
+        <td className='text-lg'>{ myClass?.displayName}<br/>
+          <span className="badge text-lg badge-ghost badge-sm">{ myClass?.email}</span>
         </td>
-        <td>{MyClass?.status}</td>
+        <td className='text-base uppercase'>{ myClass?.status}</td>
         <th className='flex align-middle justify-center flex-col gap-2'>
-          <button onClick={() => handleUpdateStatus('approved', MyClass._id)} disabled={MyClass?.status === 'approved'} className="btn btn-success btn-sm">Approve</button>
-          <button onClick={() => handleUpdateStatus('deny', MyClass._id)} disabled={MyClass?.status === 'deny'} className="btn btn-error btn-sm">Delete</button>
+
+          {/* approve button  */}
+          <button onClick={() => handleUpdateStatus('approved', myClass._id)} disabled={ myClass?.status === 'approved'} className="btn btn-success btn-sm">Approve</button>
+
+          {/* modal body  */}
+          
+
+           {/* update button  */}
+          <button className="btn bg-[#081b29] text-white btn-sm" disabled={myClass?.feedback}> Feedback</button>
+
+           {/* delete button  */}
+          <button onClick={() => handleUpdateStatus('denied', myClass._id)} disabled={ myClass?.status === 'denied'} className="btn btn-error btn-sm">Delete</button>
         </th>
       </tr>
+    
+     
          )}    
     </tbody>  
   </table>
 </div>
+
         </div>
     );
 };

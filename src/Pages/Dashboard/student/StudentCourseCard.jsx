@@ -42,6 +42,8 @@ const StudentCourseCard = ({ course, enrolledCourses, setEnrolledCourses }) => {
     });
   };
 
+  
+
   return (
     <div className="card w-80 mx-auto mt-10 bg-base-100 shadow-xl image-full">
       {/* Card content -----------------------------------------*/}
