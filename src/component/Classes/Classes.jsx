@@ -2,8 +2,10 @@ import React, { useContext, useEffect, useState } from 'react';
 import ClassCard from './ClassCard';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Provider/AuthProvider';
+import useTitle from '../../hooks/useTitle';
 
 const Classes = () => {
+  useTitle('Courses');
     const [allClasses, setAllClasses] = useState([]);
 
     useEffect(() => {

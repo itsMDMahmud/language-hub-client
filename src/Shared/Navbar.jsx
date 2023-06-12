@@ -83,7 +83,7 @@ const Navbar = () => {
         >
           <img
             className=""
-            src="https://i.ibb.co/fCqMFwv/main-logo.png"
+            src="https://i.ibb.co/PDPYCmW/name-logo.png"
             alt="logooo"
           />
         </Link>

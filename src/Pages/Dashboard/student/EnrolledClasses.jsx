@@ -1,8 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../../Provider/AuthProvider';
 import { useNavigate } from 'react-router-dom';
+import useTitle from '../../../hooks/useTitle';
 
 const EnrolledClasses = () => {
+  useTitle('Enrolled');
     const { user } = useContext(AuthContext);
     const [enrolled, setEnrolled] = useState([]);
     // console.log(enrolled);

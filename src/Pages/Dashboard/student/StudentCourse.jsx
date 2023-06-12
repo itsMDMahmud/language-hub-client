@@ -4,16 +4,19 @@ import { AuthContext } from "../../../Provider/AuthProvider";
 import useCart from "../../../hooks/useCart";
 import { Link } from "react-router-dom";
 import Payment from "./Payment";
+import useTitle from "../../../hooks/useTitle";
 
 const StudentCourse = () => {
+  useTitle('Student Cart');
   const [cart, refetch] = useCart();
   const { user } = useContext(AuthContext);
+  // console.log(user);
   const [enrolledCourses, setEnrolledCourses] = useState([]);
 
   const total = cart.reduce((sum, item) => item.price + sum, 0);
 
   useEffect(() => {
-    fetch("https://language-hub-server.vercel.app/carts")
+    fetch(`https://language-hub-server.vercel.app/carts?email=${user?.email}`)
       .then((res) => res.json())
       .then((data) => setEnrolledCourses(data));
   }, []);

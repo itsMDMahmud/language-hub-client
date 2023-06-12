@@ -3,8 +3,10 @@ import Carousell from "./Carousell";
 import Instructors from "../../component/Instructors/Instructors";
 import Hero from "./Hero";
 import SixInstructors from "../../component/Instructors/SixInstructors";
+import useTitle from "../../hooks/useTitle";
 
 const Homepage = () => {
+  useTitle('home');
   
 
   return (

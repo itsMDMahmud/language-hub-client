@@ -4,8 +4,10 @@ import { Link, useNavigate } from "react-router-dom";
 import SocialLogin from "./SocialLogin";
 import { AuthContext } from "../Provider/AuthProvider";
 import Swal from "sweetalert2";
+import useTitle from "../hooks/useTitle";
 
 const Signup = () => {
+  useTitle('Sign Up');
   const {
     register,
     handleSubmit,

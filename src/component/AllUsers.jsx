@@ -7,8 +7,10 @@ import { FaTrashAlt, FaUserShield } from "react-icons/fa";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 import useAdmin from "../hooks/useAdmin";
+import useTitle from "../hooks/useTitle";
 
 const AllUsers = () => {
+  useTitle('Manage users');
   const [ refetch] = useAdmin();
   const [alluser] = useMenu();
   // const [axiosSecure] = useAxiosSecure();

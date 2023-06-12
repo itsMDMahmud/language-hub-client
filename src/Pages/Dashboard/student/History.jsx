@@ -1,8 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Provider/AuthProvider';
+import useTitle from '../../../hooks/useTitle';
 
 const History = () => {
+  useTitle('History');
     const { user } = useContext(AuthContext);
   const [histories, setHistories] = useState([]);
   const navigate = useNavigate();

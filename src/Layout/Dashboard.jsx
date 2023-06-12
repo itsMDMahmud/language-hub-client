@@ -4,8 +4,10 @@ import { AuthContext } from "../Provider/AuthProvider";
 import useAdmin from "../hooks/useAdmin";
 import useCart from "../hooks/useCart";
 import useInstructor from "../hooks/useInstructor";
+import useTitle from "../hooks/useTitle";
 
 const Dashboard = () => {
+  useTitle('Dashboard');
   // const [cart, refetch] = useCart();
   const [isAdmin, isAdminLoading, refetch] = useAdmin();
   const [isInstructor, isInstructorLoading] = useInstructor();
@@ -51,7 +53,7 @@ const Dashboard = () => {
           <li> <Link className=" dashnav " to='/dashboard/myclass'>My Courses</Link> </li>
           </> :
           <>
-          <li><Link className="dashnav" to='/dashboard/enrolled'>Enrolled Classes</Link></li>
+          <li><Link className="dashnav" to='/dashboard/enrolled'>Enrolled Courses</Link></li>
           <li><Link className="dashnav" to='/dashboard/history'>History</Link></li>
           {/* <li><Link className="dashnav" to='/dashboard/payment'>Payment</Link></li> */}
           </>

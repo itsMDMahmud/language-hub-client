@@ -2,8 +2,10 @@ import React, { useContext } from "react";
 import useMenu from "../../hooks/useMenu";
 import SingInstructor from "./SingInstructor";
 import { AuthContext } from "../../Provider/AuthProvider";
+import useTitle from "../../hooks/useTitle";
 
 const Instructors = () => {
+  useTitle('Instructors');
   // const [alluser] = useMenu();
   const {allAdmin, allInstructor, allStudent} = useContext(AuthContext);
 

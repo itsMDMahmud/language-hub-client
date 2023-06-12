@@ -3,8 +3,10 @@ import Swal from "sweetalert2";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import { Navigate } from "react-router-dom";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import useTitle from "../../../hooks/useTitle";
 
 const AddClass = () => {
+  useTitle('Add Course');
     const [axiosSecure] = useAxiosSecure();
   const { user } = useContext(AuthContext);
   // console.log(user);
