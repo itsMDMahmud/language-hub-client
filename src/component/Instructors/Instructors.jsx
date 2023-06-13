@@ -4,6 +4,7 @@ import SingInstructor from "./SingInstructor";
 import { AuthContext } from "../../Provider/AuthProvider";
 import useTitle from "../../hooks/useTitle";
 
+
 const Instructors = () => {
   useTitle('Instructors');
   // const [alluser] = useMenu();
@@ -20,13 +21,15 @@ const Instructors = () => {
   // );
   // console.log(allInstructor);
 
+  
   return (
-    <div className="max-w-screen-xl grid md:grid-cols-3 mx-auto gap-4">
+    <div className="max-w-screen-xl grid md:grid-cols-3 mx-auto mt-28 gap-4">
       
       {allInstructor.map((instructor) => (
         <SingInstructor
           key={instructor._id}
           instructor={instructor}
+         
         ></SingInstructor>
       ))}
     </div>

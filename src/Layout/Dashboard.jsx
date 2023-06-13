@@ -5,9 +5,19 @@ import useAdmin from "../hooks/useAdmin";
 import useCart from "../hooks/useCart";
 import useInstructor from "../hooks/useInstructor";
 import useTitle from "../hooks/useTitle";
+import Swap from "../Shared/Swap";
 
 const Dashboard = () => {
   useTitle('Dashboard');
+
+  //---logout--------------------------------------
+  const { user, logOut } = useContext(AuthContext);
+
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {})
+      .catch((error) => console.log(error));
+  };
   // const [cart, refetch] = useCart();
   const [isAdmin, isAdminLoading, refetch] = useAdmin();
   const [isInstructor, isInstructorLoading] = useInstructor();
@@ -31,10 +41,34 @@ const Dashboard = () => {
         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
         <ul className="menu p-4 w-60 h-full  text-base-content">
           {/* Sidebar content here */}
+          <div className=" flex justify-between items-center flex-row-reverse"> <Swap/>
+          {user?.email ? (
+          <>
+            <img
+              className="w-8 rounded-full"
+              src={user?.photoURL}
+              alt="img"
+              title={user.displayName}
+            />
+            <Link onClick={handleLogOut}>
+              <button className="btn btn-sm border-none bg-[#ee5253] hover:bg-[#3bb89f] text-white">
+                logout
+              </button>
+            </Link>
+          </>
+        ) : (
+          <Link to="login">
+            <button className="btn bg-[#039477] hover:bg-[#3bb89f] text-white">
+              Login
+            </button>
+          </Link>
+        )}
+           </div>
           <li> <Link className="dashnav" to='/'>Home</Link> </li>
           <li> <Link className="dashnav" to='/instructors'>Instructors</Link> </li>
           <li> <Link className="dashnav" to="/classes" > Courses </Link> </li>
           <li> <Link className="dashnav" to="/dashboard/commonpage" >Dashboard</Link></li>
+          <div className="divider"></div>
           {/*<li> <Link className=" dashnav" to='/dashboard/allusers'>Users</Link> </li>
           <li> <Link className=" dashnav" to='/dashboard/cart'>Cart</Link> </li>
           <li> <Link className=" dashnav " to='/dashboard/addclass'>Add Class</Link> </li>

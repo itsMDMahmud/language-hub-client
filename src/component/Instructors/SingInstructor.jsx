@@ -1,9 +1,13 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 const SingInstructor = ({instructor}) => {
     const {_id, displayName, photoURL, email, role } = instructor;
   return (
-    <div className="card card-compact m-2 bg-base-100 shadow-xl">
+    <motion.div
+      // className="box"
+      whileHover={{ scale: 1.05 }}
+      transition={{ type: "spring", stiffness: 400, damping: 10 }} className="box container item card card-compact m-2 bg-base-100 shadow-xl">
       <figure>
         <img
           src={photoURL}
@@ -18,7 +22,7 @@ const SingInstructor = ({instructor}) => {
           {/* <button className="btn bg-[#039477] hover:bg-[#3bb89f] text-white">Profile</button> */}
         </div>
       </div>
-    </div>
+      </motion.div>
   );
 };
 

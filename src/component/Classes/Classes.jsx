@@ -28,7 +28,7 @@ const Classes = () => {
        const navigate = useNavigate();
      //   console.log(histories);
      
-       const url = `https://language-hub-server.vercel.app/payments?email=${user?.email}`;
+       const url = `https://language-hub-server.vercel.app/payments/${user?.email}`;
        useEffect(() => {
          fetch(url)
            .then((res) => res.json())
@@ -47,7 +47,7 @@ const Classes = () => {
     // console.log(enrolled);
 
     return (
-        <div className="max-w-screen-xl grid md:grid-cols-3 mx-auto gap-4">
+        <div className="max-w-screen-xl grid md:grid-cols-3 mx-auto gap-4 mt-28">
       
       {filterClasses.map(oneClass => <ClassCard
         key={oneClass._id}

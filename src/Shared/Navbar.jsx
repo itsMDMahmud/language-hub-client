@@ -1,6 +1,9 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
+import Swap from "./Swap";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -10,6 +13,10 @@ const Navbar = () => {
       .then(() => {})
       .catch((error) => console.log(error));
   };
+
+  useEffect(() => {
+    AOS.init();
+  }, []);
 
   const navItems = (
     <>
@@ -45,13 +52,16 @@ const Navbar = () => {
           Dashboard
         </Link>
       </li>
+      <li>
+        <Swap/>
+      </li>
       <div></div>
     </>
   );
 
   return (
-    <div className="navbar max-w-screen-xl mx-auto bg-base-100 h-[75px] z-10">
-      <div className="navbar-start">
+    <div data-aos="fade-down" data-aos-duration="1000" className="navbar header   bg-base-100 h-[75px]  ">
+      <div data-aos="fade-right" data-aos-duration="2000" className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
             <svg
@@ -71,9 +81,9 @@ const Navbar = () => {
           </label>
           <ul
             tabIndex={0}
-            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 z-50"
           >
-            {/* {navItems} */}
+            {navItems}
           </ul>
         </div>
         <Link
@@ -99,10 +109,10 @@ const Navbar = () => {
           />
         </Link>
       </div>
-      <div className="navbar-center hidden lg:flex">
+      <div data-aos="fade-down" data-aos-duration="2000" className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{navItems}</ul>
       </div>
-      <div className="navbar-end">
+      <div data-aos="fade-left" data-aos-duration="2000" className="navbar-end">
         {user?.email ? (
           <>
             <img

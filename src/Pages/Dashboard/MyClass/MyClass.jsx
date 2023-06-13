@@ -9,11 +9,7 @@ const MyClass = () => {
     const { user } = useContext(AuthContext);
     
 
-    // useEffect(() => {
-    //     fetch(`https://language-hub-server.vercel.app/classes?email=${user.email}`) // Replace API_URL with the actual API endpoint
-    //   .then(res => res.json())
-    //   .then(data => setMyclasses(data))
-    //   }, []);
+   
 
     useEffect(() => {
         fetchData();
@@ -21,7 +17,7 @@ const MyClass = () => {
     
       const fetchData = async () => {
         try {
-          const url = `https://language-hub-server.vercel.app/classes?email=${user?.email}`;
+          const url = `https://language-hub-server.vercel.app/classes/${user?.email}`;
           const response = await fetch(url);
           const data = await response.json();
           setMyclasses(data);

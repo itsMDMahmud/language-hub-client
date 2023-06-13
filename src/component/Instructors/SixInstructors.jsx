@@ -2,6 +2,8 @@ import React, { useContext } from "react";
 import useMenu from "../../hooks/useMenu";
 import SingInstructor from "./SingInstructor";
 import { AuthContext } from "../../Provider/AuthProvider";
+import { motion } from "framer-motion";
+
 
 const SixInstructors = () => {
     const { allInstructor} = useContext(AuthContext);
@@ -9,7 +11,10 @@ const SixInstructors = () => {
         <div className="max-w-screen-xl grid md:grid-cols-3 mx-auto gap-4">
       
       {allInstructor.slice(0, 6).map((instructor) => 
-      <div key={instructor?._id} className="card card-compact m-2 bg-base-100 shadow-xl">
+      <motion.div
+      // className="box"
+      whileHover={{ scale: 1.1 }}
+      transition={{ type: "spring", stiffness: 400, damping: 20 }} key={instructor?._id} className="box card card-compact m-2 bg-base-100 shadow-xl">
       <figure>
         <img
           src={instructor?.photoURL}
@@ -24,7 +29,7 @@ const SixInstructors = () => {
           {/* <button className="btn bg-[#039477] hover:bg-[#3bb89f] text-white">Profile</button> */}
         </div>
       </div>
-    </div>
+    </motion.div>
       )}
     </div>
     );

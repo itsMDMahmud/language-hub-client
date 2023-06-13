@@ -87,14 +87,14 @@ const AllUsers = () => {
                   </div>
                 </td>
                 <td>{user?.displayName}</td>
-                <td className="">$ {user?.email}</td>
-                <td className=""> {
-                    user.role === 'instructor'  ? 'Instructor' : <button onClick={() => handleMakeInstructor(user)} className="btn btn-ghost bg-teal-500 text-white"><FaUserShield/> </button>
-                }</td>
+                <td className="">{user?.email}</td>
+                <td className="">{user?.role}</td>
+                <td className=""> 
+                <button disabled={user.role === 'admin' || user.role === 'instructor' } onClick={() => handleMakeInstructor(user)} className="btn btn-ghost bg-teal-500 text-white"><FaUserShield/> </button>
+                </td>
                 
-                <td className=""> {
-                    user.role === 'admin'  ? 'Admin' : <button onClick={() => handleMakeAdmin(user)} className="btn btn-ghost bg-[#ff7979] text-white"><FaUserShield/> </button>
-                }</td>
+                <td className=""> <button disabled={user.role === 'admin' || user.role === 'instructor' } onClick={() => handleMakeAdmin(user)} className="btn btn-ghost bg-[#ff7979] text-white"><FaUserShield/> </button>
+                </td>
               </tr>
             ))}
           </tbody>

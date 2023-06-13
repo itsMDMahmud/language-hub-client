@@ -100,7 +100,7 @@ const ApprovalPage = () => {
         <th className='flex align-middle justify-center flex-col gap-2'>
 
           {/* approve button  */}
-          <button onClick={() => handleUpdateStatus('approved', myClass._id)} disabled={ myClass?.status === 'approved'} className="btn btn-success btn-sm">Approve</button>
+          <button onClick={() => handleUpdateStatus('approved', myClass._id)} disabled={ myClass?.status === 'approved' || myClass?.status === 'denied'} className="btn btn-success btn-sm">Approve</button>
 
           {/* modal body  */}
           
@@ -109,7 +109,7 @@ const ApprovalPage = () => {
           <button className="btn bg-[#081b29] text-white btn-sm" disabled={myClass?.feedback}> Feedback</button>
 
            {/* delete button  */}
-          <button onClick={() => handleUpdateStatus('denied', myClass._id)} disabled={ myClass?.status === 'denied'} className="btn btn-error btn-sm">Deny</button>
+          <button onClick={() => handleUpdateStatus('denied', myClass._id)} disabled={ myClass?.status === 'denied' || myClass?.status === 'approved'} className="btn btn-error btn-sm">Deny</button>
         </th>
       </tr>
     

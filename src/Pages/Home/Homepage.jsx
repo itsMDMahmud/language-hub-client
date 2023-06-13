@@ -12,7 +12,7 @@ const Homepage = () => {
   return (
     <div>
 
-      <div className="my-5">
+      <div className="mb-5 mt-">
         <Hero/>
       </div>
       

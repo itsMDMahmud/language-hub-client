@@ -5,6 +5,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import useCart from '../../hooks/useCart';
 import useAdmin from '../../hooks/useAdmin';
 import useInstructor from '../../hooks/useInstructor';
+import { motion } from "framer-motion";
 
 const ClassCard = ({oneClass, enrolled}) => {
   const {user} = useContext(AuthContext);
@@ -71,7 +72,10 @@ const ClassCard = ({oneClass, enrolled}) => {
 
     return (
       
-      <div className={lengtho? "card card-compact m-2 bg-red-500  shadow-xl" : 'card card-compact m-2 bg-base-100  shadow-xl'}>
+      <motion.div
+      // className="box"
+      whileHover={{ scale: 1.1 }}
+      transition={{ type: "spring", stiffness: 400, damping: 10 }} className={lengtho? " card card-compact m-2 bg-red-500  shadow-xl" : 'card card-compact m-2 bg-base-100  shadow-xl'}>
       {/* <div className="card card-compact m-2 bg-base-100  shadow-xl"> */}
         <figure>
           <img
@@ -93,7 +97,7 @@ const ClassCard = ({oneClass, enrolled}) => {
             {/* <button onClick={() => handleAddToCart(oneClass)} className="btn bg-[#039477] hover:bg-[#3bb89f] text-white" >Enroll Now</button> */}
           </div>
         </div>
-      </div>
+      </motion.div>
     );
 };
 

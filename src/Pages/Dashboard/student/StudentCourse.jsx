@@ -16,7 +16,7 @@ const StudentCourse = () => {
   const total = cart.reduce((sum, item) => item.price + sum, 0);
 
   useEffect(() => {
-    fetch(`https://language-hub-server.vercel.app/carts?email=${user?.email}`)
+    fetch(`https://language-hub-server.vercel.app/carts/${user?.email}`)
       .then((res) => res.json())
       .then((data) => setEnrolledCourses(data));
   }, []);
