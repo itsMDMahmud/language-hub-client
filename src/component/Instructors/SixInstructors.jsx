@@ -7,8 +7,11 @@ import { motion } from "framer-motion";
 
 const SixInstructors = () => {
     const { allInstructor} = useContext(AuthContext);
+    // console.log(allInstructor);
     return (
-        <div className="max-w-screen-xl grid md:grid-cols-3 mx-auto gap-4">
+        <div>
+          <h2 className="lg:text-5xl text-2xl text-center font-semibold my-5 lg:my-10">Popular Instructors</h2>
+          <div className="max-w-screen-xl grid md:grid-cols-3 mx-auto gap-4">          
       
       {allInstructor.slice(0, 6).map((instructor) => 
       <motion.div
@@ -32,6 +35,7 @@ const SixInstructors = () => {
     </motion.div>
       )}
     </div>
+        </div>
     );
 };
 

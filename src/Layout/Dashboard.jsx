@@ -64,15 +64,13 @@ const Dashboard = () => {
           </Link>
         )}
            </div>
+           <div className="divider"></div>
           <li> <Link className="dashnav" to='/'>Home</Link> </li>
           <li> <Link className="dashnav" to='/instructors'>Instructors</Link> </li>
           <li> <Link className="dashnav" to="/classes" > Courses </Link> </li>
           <li> <Link className="dashnav" to="/dashboard/commonpage" >Dashboard</Link></li>
           <div className="divider"></div>
-          {/*<li> <Link className=" dashnav" to='/dashboard/allusers'>Users</Link> </li>
-          <li> <Link className=" dashnav" to='/dashboard/cart'>Cart</Link> </li>
-          <li> <Link className=" dashnav " to='/dashboard/addclass'>Add Class</Link> </li>
-          <li> <Link className=" dashnav " to='/dashboard/myclass'>My classes</Link> </li> */}
+          
 
           {isAdmin  ?
           <>
@@ -89,17 +87,14 @@ const Dashboard = () => {
           <>
           <li><Link className="dashnav" to='/dashboard/enrolled'>Enrolled Courses</Link></li>
           <li><Link className="dashnav" to='/dashboard/history'>History</Link></li>
-          {/* <li><Link className="dashnav" to='/dashboard/payment'>Payment</Link></li> */}
           </>
           }
           </>
-          }         
+          }       
           
-
           <div className="divider"></div>
           
           <li>
-            {/* <a>Sidebar Item 2</a> */}
             
           </li>
         </ul>

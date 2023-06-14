@@ -4,6 +4,7 @@ import Instructors from "../../component/Instructors/Instructors";
 import Hero from "./Hero";
 import SixInstructors from "../../component/Instructors/SixInstructors";
 import useTitle from "../../hooks/useTitle";
+import PopularClasses from "./PopularClasses";
 
 const Homepage = () => {
   useTitle('home');
@@ -21,6 +22,9 @@ const Homepage = () => {
       </div>
       <div className="my-5">
         <SixInstructors/>
+      </div>
+      <div className="my-5">
+        <PopularClasses/>
       </div>
     </div>
   );

@@ -71,6 +71,9 @@ const AllUsers = () => {
               <th>User Name</th>
               <th className="">Email</th>
               <th>Role</th>
+              <th>Instructor</th>
+              <th>Admin</th>
+              
             </tr>
           </thead>
           <tbody>

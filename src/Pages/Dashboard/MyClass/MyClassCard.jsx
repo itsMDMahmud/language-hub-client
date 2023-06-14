@@ -22,7 +22,7 @@ const MyClassCard = ({MyClass}) => {
           <div className="btn btn-outline">{status}</div>:
           <div className="btn btn-outline btn-error">{status}</div>}</>}
               
-            {/* <button className="btn bg-[#039477] hover:bg-[#3bb89f] text-white">Enroll Now</button> */}
+            <button className="btn bg-[#081b29] hover:bg-[#081b29b4] text-white">Update</button>
           </div>
         </div>
       </div>
