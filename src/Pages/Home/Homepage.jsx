@@ -5,6 +5,7 @@ import Hero from "./Hero";
 import SixInstructors from "../../component/Instructors/SixInstructors";
 import useTitle from "../../hooks/useTitle";
 import PopularClasses from "./PopularClasses";
+import ContactUs from "./ContactUs";
 
 const Homepage = () => {
   useTitle('home');
@@ -25,6 +26,10 @@ const Homepage = () => {
       </div>
       <div className="my-5">
         <PopularClasses/>
+      </div>
+      
+      <div className="my-5">
+        <ContactUs/>
       </div>
     </div>
   );
